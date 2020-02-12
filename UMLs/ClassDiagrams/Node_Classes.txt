@@ -3,20 +3,20 @@ skinparam nodesep 40
 
 class Node {
   - iD: UUID
-  - templateName: String
-  +addComponent(): void
-  +removeComponent(): void
+  - templateID: UUID
+  +addComponent(value: NodeComponent): void
+  +removeComponent(value: NodeComponent): void 
+  +getComponentsCopy(): IEnumerable<NodeComponent>
   +getID(): UUID
-  +getTemplateName(): String
+  +getTemplateID(): UUID
 }
 
-class NodeComponent {
+abstract class NodeComponent {
   - iD: UUID
-  - type: ComponentType
   - name: String
   +getID(): UUID
-  +getType(): ComponentType
   + getName(): String
+  + setName(value:String): void
 }
 
 class NodeReferenceComponent {
@@ -60,7 +60,6 @@ Node -right-> NodeComponent
 NodeTemplate -down-> NodeComponentTemplate
 NodeComponent <|-down- NodeReferenceComponent
 ComponentType <-left- NodeComponentTemplate
-NodeComponent -right-> ComponentType
 NodeFactory -up-> NodeTemplate
 NodeFactory -right-> Node
 NodeComponentFactory -up-> NodeComponent

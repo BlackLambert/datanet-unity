@@ -1,0 +1,45 @@
+@startuml
+skinparam nodesep 40
+
+class DataNet {
+  -iD: UUID
+  -nodeContainer: NodeContainer
+  -nodeIndex: NodeIndex
+  +getID(): UUID
+  +getNodeContainer(): NodeContainer
+  +getNodeIndex(): NodeIndex
+}
+
+class NodeContainer {
+}
+
+class NodeIndex {
+  
+}
+
+abstract class DataNetFactory{
+  +create(): DataNet
+}
+
+class DataNetFactoryImpl{
+  +create(): DataNet
+}
+
+class DataNetContainer {
+  -iDToDataNet: Dictionary<UUID, DataNet>
+  +getDataNet(iD: UUID): DataNet
+  +addDataNet(value: DataNet): void
+  +removeDataNet(value: DataNet): void
+  +removeDataNet(iD: UUID): void
+}
+
+DataNet -left-> NodeContainer
+DataNet -right-> NodeIndex
+DataNetFactory -up-> DataNet
+DataNetFactoryImpl -up-> DataNetFactory
+DataNetContainer -down-> DataNet
+
+
+note top of NodeContainer : see Node class diagram
+note top of NodeIndex : no concept yet
+@enduml
