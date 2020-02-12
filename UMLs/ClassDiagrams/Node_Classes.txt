@@ -1,0 +1,69 @@
+@startuml
+skinparam nodesep 40
+
+class Node {
+  - iD: UUID
+  - templateName: String
+  +addComponent(): void
+  +removeComponent(): void
+  +getID(): UUID
+  +getTemplateName(): String
+}
+
+class NodeComponent {
+  - iD: UUID
+  - type: ComponentType
+  - name: String
+  +getID(): UUID
+  +getType(): ComponentType
+  + getName(): String
+}
+
+class NodeReferenceComponent {
+  - referencedNodeID: UUID
+  +getReferencedNodeID(): UUID
+  +setReferencedNodeID(value: UUID): void
+}
+
+enum ComponentType {
+  NodeReference
+}
+
+class NodeTemplate {
+  - components: List<NodeComponentTemplate>
+  + getComponents(): List<NodeComponentTemplate>
+}
+
+class NodeComponentTemplate {
+  - type: ComponentType
+  + getType(): ComponentType
+}
+
+abstract class NodeFactory {
+  +create(template: NodeTemplate): Node
+}
+
+abstract class NodeComponentFactory {
+  +create(template: NodeComponentTemplate): NodeComponent
+}
+
+class NodeContainer {
+  -iDToNode: Dictionary<UUID, Node>
+  +getNode(iD: UUID): Node
+  +addNode(value: Node): void
+  +removeNode(value: Node): void
+  +removeNode(iD: UUID): void
+}
+
+
+Node -right-> NodeComponent 
+NodeTemplate -down-> NodeComponentTemplate
+NodeComponent <|-down- NodeReferenceComponent
+ComponentType <-left- NodeComponentTemplate
+NodeComponent -right-> ComponentType
+NodeFactory -up-> NodeTemplate
+NodeFactory -right-> Node
+NodeComponentFactory -up-> NodeComponent
+NodeComponentFactory -up-> NodeComponentTemplate
+NodeContainer -up-> Node
+@enduml
