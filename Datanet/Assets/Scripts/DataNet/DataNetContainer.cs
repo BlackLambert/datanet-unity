@@ -11,6 +11,7 @@ namespace SBaier.Datanet.Core
 		public event Action<DataNet> OnNetAdded;
 		public event Action<DataNet> OnNetRemoved;
 		public int Count { get { return _idToDataNet.Count; } }
+		public IEnumerable<DataNet> DataNetsCopy { get { return new List<DataNet>(_idToDataNet.Values); } }
 
 		public DataNetContainer()
 		{

@@ -10,7 +10,7 @@ namespace SBaier.Datanet
 	public class DataNetCountDisplay : MonoBehaviour
 	{
 		[SerializeField]
-		private TextMeshProUGUI _text;
+		private TextMeshProUGUI _text = null;
 
 		private DataNetContainer _netContainer;
 

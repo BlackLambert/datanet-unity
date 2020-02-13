@@ -18,11 +18,20 @@ namespace SBaier.Datanet.Core
 			private set;
 		}
 
+		public string Name
+		{
+			get;
+			set;
+		}
 
-		public DataNet(Guid iD, NodeContainer nodeContainer)
+
+		public DataNet(Guid iD, 
+			NodeContainer nodeContainer,
+			string name)
 		{
 			ID = iD;
 			NodeContainer = nodeContainer;
+			Name = name;
 		}
 	}
 }
