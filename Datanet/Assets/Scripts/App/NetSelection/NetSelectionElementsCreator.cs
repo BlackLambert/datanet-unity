@@ -12,12 +12,14 @@ namespace SBaier.Datanet
 	{
 		[SerializeField]
 		private Transform _hook = null;
+		public Transform Hook { get { return _hook; } }
 
 		private DataNetContainer _dataNetContainer;
 		private PrefabFactory _prefabFactory;
 		private NetSelectionElementInstaller _elementPrefab;
 
 		private Dictionary<Guid, NetSelectionElementInstaller> _elements;
+		public Dictionary<Guid, NetSelectionElementInstaller> ElementsCopy { get { return new Dictionary<Guid, NetSelectionElementInstaller>(_elements); } }
 
 		[Inject]
 		private void Construct(DataNetContainer dataNetContainer,

@@ -10,8 +10,10 @@ namespace SBaier.Datanet
 	{
 		[SerializeField]
 		private Button _button = null;
+		public Button Button { get { return _button; } }
 		[SerializeField]
 		private string _sceneName = string.Empty;
+		public string SceneName { get { return _sceneName; } }
 
 		protected virtual void Start()
 		{

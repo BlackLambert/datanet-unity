@@ -2,60 +2,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using SBaier.Testing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-    public class NetCreationErrorDisplayTest
-    {
+	[TestFixture]
+	public class NetCreationErrorDisplayTest : ZenjectIntegrationTestFixture
+	{
 		private const string _emptyError = "";
 		private const string _errorName = "Horrible Error!";
-  
-		private DataNetCreationData _creationData;
-		private GameObject _displayObject;
-		private DataNetCreationErrorDisplay _display;
-		private UITestHelper _uITestHelper;
 		
 
-        [SetUp]
-        public void Setup()
+        public void Install()
         {
-			_creationData = new DataNetCreationData();
+			PreInstall();
+
+			//Setup scene
+			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
+			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
+			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+
+			//Bindings
+			Container.Bind<DataNetCreationData>().AsSingle();
+			Container.Bind<DataNetCreationErrorDisplay>().FromComponentInNewPrefabResource(ResourcePaths.NetCreationErrorDisplayPrefabPath).AsSingle().NonLazy();
+
+			PostInstall();
+
+			//Init Objects
 			_creationData.Error = _emptyError;
-			_uITestHelper = new UITestHelper();
-			GameObject canvasObject = _uITestHelper.CreateDefaultTestCanvas();
-			GameObject _errorDisplayPrefab = Resources.Load(ResourcePaths.NetCreationErrorDisplayPrefabPath) as GameObject;
-			_displayObject = GameObject.Instantiate(_errorDisplayPrefab, canvasObject.transform);
-			_display = _displayObject.GetComponentInChildren<DataNetCreationErrorDisplay>();
-			_display.Construct(_creationData);
+			_display.transform.SetParent(_canvas.Hook, false);
 		}
 
-		[TearDown]
-		public void Teardown()
-		{
-			GameObject.Destroy(_displayObject);
-			_uITestHelper.DestroyDefaultCanvas();
-		}
+
+		[Inject]
+		private DataNetCreationData _creationData = null;
+		[Inject]
+		private DataNetCreationErrorDisplay _display = null;
+		[Inject]
+		private UITestCanvas _canvas = null;
 
 
 		[UnityTest]
 		public IEnumerator InitialErrorDisplayed()
 		{
-			TextMeshProUGUI text = _displayObject.GetComponentInChildren<TextMeshProUGUI>();
-			Assert.AreEqual(text.text, _emptyError);
-			yield return 0;
+			Install();
+			yield return null;
+
+			Assert.AreEqual(_display.TextField.text, _emptyError);
+			yield return null;
 		}
 
 		// A Test behaves as an ordinary method
 		[UnityTest]
         public IEnumerator CorrectErrorDisplayed()
         {
+			Install();
+			yield return null;
+
 			_creationData.Error = _errorName;
-			TextMeshProUGUI text = _displayObject.GetComponentInChildren<TextMeshProUGUI>();
-			Assert.AreEqual(text.text, _errorName);
-			yield return 0;
+			Assert.AreEqual(_display.TextField.text, _errorName);
+			yield return null;
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace SBaier.Datanet
 	{
 		[SerializeField]
 		private Button _button = null;
+		public Button Button { get { return _button; } }
 
 		private DataNetFactory _dataNetFactory;
 		private DataNetContainer _dataNetContainer;

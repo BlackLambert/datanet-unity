@@ -8,8 +8,7 @@ namespace SBaier.Datanet
 	{
 		public override void InstallBindings()
 		{
-			Container.Bind<DataNetContainer>().To<DataNetContainer>().AsSingle();
-			Container.Bind<PrefabFactory>().To<PrefabFactory>().AsSingle();
+			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
 			Container.Bind<SelectedDataNet>().To<SelectedDataNet>().AsSingle();
 		}
 	}

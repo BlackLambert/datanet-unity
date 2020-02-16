@@ -3,60 +3,87 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using SBaier.Datanet.Core;
+using SBaier.Testing;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-    public class NetSelectionElementTest
-    {
+	[TestFixture]
+	public class NetSelectionElementTest : ZenjectIntegrationTestFixture
+	{
 		private const string _netName = "My Net";
 
-		private UITestHelper _uITestHelper;
-		private GameObject _canvas;
-		private GameObject _elementObject;
-		private DataNet _elementNet;
-		private SelectedDataNet _selectedDataNet;
-		private SelectNetOnClick _selectNetOnClick;
-		private NetNameDisplay _netNameDisplay;
-
-		[SetUp]
-        public void Setup()
+		
+        public void Install()
         {
-			_uITestHelper = new UITestHelper();
-			_canvas = _uITestHelper.CreateDefaultTestCanvas();
-			_elementObject = GameObject.Instantiate(Resources.Load(ResourcePaths.NetSelectionElementPrefabPath) as GameObject, _canvas.transform);
+			PreInstall();
+
+			//Setup scene
+			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
+			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
+			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+
+			//Bindings
+			Container.Bind<SelectedDataNet>().AsSingle();
+			Container.Bind(typeof(NetSelectionElementInstaller), typeof(SelectNetOnClick), typeof(NetNameDisplay),  typeof(SceneLoaderOnClick), typeof(SceneUnloaderOnClick)).FromComponentInNewPrefabResource(ResourcePaths.NetSelectionElementPrefabPath).AsSingle().NonLazy();
 			DataNetFactory factory = new DataNetFactoryDummy();
-			_elementNet = factory.Create(new DataNetFactory.Parameter(_netName));
-			_selectedDataNet = new SelectedDataNet();
-			_selectNetOnClick = _elementObject.GetComponentInChildren<SelectNetOnClick>();
-			_selectNetOnClick.Construct(_selectedDataNet, _elementNet);
-			_netNameDisplay = _elementObject.GetComponentInChildren<NetNameDisplay>();
-			_netNameDisplay.Construct(_elementNet);
+			Container.Bind<DataNet>().FromInstance(factory.Create(new DataNetFactory.Parameter(_netName))).AsSingle();
+
+			PostInstall();
+
+			//Init Objects
+			_element.transform.SetParent(_canvas.Hook, false);
 		}
 
-		[TearDown]
-		public void Teardown()
+		private void removeSceneLoader()
 		{
-			if(_elementObject != null)
-				GameObject.Destroy(_elementObject);
-			_uITestHelper.DestroyDefaultCanvas();
+			GameObject.Destroy(_element.GetComponentInChildren<SceneLoaderOnClick>());
+			GameObject.Destroy(_element.GetComponentInChildren<SceneUnloaderOnClick>());
 		}
 
-		private void removeSceneLoaderComponents()
+		[Inject]
+		private UITestCanvas _canvas = null;
+		[Inject]
+		private NetSelectionElementInstaller _element = null;
+		[Inject]
+		private DataNet _elementNet = null;
+		[Inject]
+		private SelectedDataNet _selectedDataNet = null;
+		[Inject]
+		private SelectNetOnClick _selectNetOnClick = null;
+		[Inject]
+		private NetNameDisplay _netNameDisplay = null;
+		[Inject]
+		private SceneLoaderOnClick _sceneLoaderOnClick = null;
+		[Inject]
+		private SceneUnloaderOnClick _sceneUnloaderOnClick = null;
+
+		[UnityTest]
+		public IEnumerator HasNeededComponents()
 		{
-			GameObject.Destroy(_elementObject.GetComponentInChildren<SceneLoaderOnClick>());
-			GameObject.Destroy(_elementObject.GetComponentInChildren<SceneUnloaderOnClick>());
-		}
-	
-        // A Test behaves as an ordinary method
-        [UnityTest]
-        public IEnumerator NetSelectedOnClick()
-        {
-			removeSceneLoaderComponents();
+			Install();
 			yield return null;
+
+			Assert.IsNotNull(_element.GetComponentInChildren<GameObjectContext>());
+			Assert.IsNotNull(_element.GetComponentInChildren<NetSelectionElementInstaller>());
+			Assert.IsNotNull(_element.GetComponentInChildren<Button>());
+			Assert.IsNotNull(_element.GetComponentInChildren<SelectNetOnClick>());
+			Assert.IsNotNull(_element.GetComponentInChildren<SceneLoaderOnClick>());
+			Assert.IsNotNull(_element.GetComponentInChildren<SceneUnloaderOnClick>());
+			Assert.IsNotNull(_element.GetComponentInChildren<NetNameDisplay>());
+		}
+
+		// A Test behaves as an ordinary method
+		[UnityTest]
+        public IEnumerator SelectsNetOnClick()
+        {
+			Install();
+			removeSceneLoader();
+			yield return null;
+
 			_selectNetOnClick.Button.onClick.Invoke();
 			yield return null;
 			Assert.AreEqual(_elementNet, _selectedDataNet.Selected);
@@ -64,10 +91,42 @@ namespace SBaier.Datanet.Tests
 		}
 
 		[UnityTest]
-		public IEnumerator CorrectNameDisplayed()
+		public IEnumerator DisplaysCorrectNetName()
 		{
-			NetNameDisplay nameDisplay = _elementObject.GetComponentInChildren<NetNameDisplay>();
-			Assert.AreEqual(_netName, nameDisplay.Text.text);
+			Install();
+			yield return null;
+
+			Assert.AreEqual(_netName, _netNameDisplay.Text.text);
+			yield return null;
+		}
+
+		[UnityTest]
+		public IEnumerator SceneLoader_CorrectTargetScene()
+		{
+			Install();
+			yield return null;
+
+			Assert.AreEqual(SceneNames.NetScene, _sceneLoaderOnClick.SceneName);
+			yield return null;
+		}
+
+		[UnityTest]
+		public IEnumerator SceneLoader_IsAdditive()
+		{
+			Install();
+			yield return null;
+
+			Assert.IsTrue(_sceneLoaderOnClick.Additive);
+			yield return null;
+		}
+
+		[UnityTest]
+		public IEnumerator SceneUnloader_CorrectTargetScene()
+		{
+			Install();
+			yield return null;
+
+			Assert.AreEqual(SceneNames.NetSelectionScene, _sceneUnloaderOnClick.SceneName);
 			yield return null;
 		}
 	}

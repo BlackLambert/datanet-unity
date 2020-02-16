@@ -28,7 +28,8 @@ namespace SBaier.Datanet
 
 		protected virtual void OnDestroy()
 		{
-			_selectedDataNet.OnSelectedChanged -= onSelectedNetChange;
+			if(_selectedDataNet != null)
+				_selectedDataNet.OnSelectedChanged -= onSelectedNetChange;
 		}
 
 		private void onSelectedNetChange()

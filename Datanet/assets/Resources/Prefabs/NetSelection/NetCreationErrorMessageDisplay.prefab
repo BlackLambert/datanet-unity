@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5247279208397116280}
   - component: {fileID: 5247279208397116282}
   m_Layer: 5
-  m_Name: ErrorMessageDisplay
+  m_Name: NetCreationErrorMessageDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c72cd082ac057a4b852e9b4b320fa22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 5247279208397116280}
+  _textField: {fileID: 5247279208397116280}

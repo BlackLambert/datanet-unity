@@ -9,7 +9,8 @@ namespace SBaier.Datanet
 	public class DataNetCreationErrorDisplay: MonoBehaviour
 	{
 		[SerializeField]
-		private TextMeshProUGUI _text = null;
+		private TextMeshProUGUI _textField = null;
+		public TextMeshProUGUI TextField { get { return _textField; } }
 
 		private DataNetCreationData _creationData;
 
@@ -37,7 +38,7 @@ namespace SBaier.Datanet
 
 		private void updateText()
 		{
-			_text.text = _creationData.Error;
+			_textField.text = _creationData.Error;
 		}
 	}
 }

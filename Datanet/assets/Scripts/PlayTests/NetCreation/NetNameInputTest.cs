@@ -1,50 +1,60 @@
 ﻿
 
 using NUnit.Framework;
+using SBaier.Testing;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-	public class NetNameInputTest
+	[TestFixture]
+	public class NetNameInputTest : ZenjectIntegrationTestFixture
 	{
 		private const string _inputText = "Input";
 		private const string _errorText = "Error";
 
-		private UITestHelper _uITestHelper;
-		private GameObject _canvas;
-		private GameObject _inputObject;
-		private DataNetCreationData _creationData;
-
-		[SetUp]
-		public void Setup()
+		
+		public void Install()
 		{
-			_uITestHelper = new UITestHelper();
-			_canvas = _uITestHelper.CreateDefaultTestCanvas();
-			_inputObject = GameObject.Instantiate(Resources.Load(ResourcePaths.NetNameInputPrefabPath) as GameObject, _canvas.transform);
-			_creationData = new DataNetCreationData();
-			DataNetNameInput input = _inputObject.GetComponentInChildren<DataNetNameInput>();
-			input.Construct(_creationData);
+			PreInstall();
+
+			//Setup scene
+			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
+			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
+			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+
+			//Bindings
+			Container.Bind<DataNetCreationData>().AsSingle();
+			Container.Bind<DataNetNameInput>().FromComponentInNewPrefabResource(ResourcePaths.NetNameInputPrefabPath).AsSingle().NonLazy();
+
+			PostInstall();
+
+			//Init Objects
 			_creationData.Error = _errorText;
+			_input.transform.SetParent(_canvas.Hook, false);
 		}
 
-		[TearDown]
-		public void Teardown()
-		{
-			GameObject.Destroy(_inputObject);
-			_uITestHelper.DestroyDefaultCanvas();
-		}
+
+		[Inject]
+		private UITestCanvas _canvas = null;
+		[Inject]
+		private DataNetNameInput _input = null;
+		[Inject]
+		private DataNetCreationData _creationData = null;
 
 
 		[UnityTest]
 		public IEnumerator CreationDataUpdatesOnInputChange()
 		{
-			TMP_InputField inputField = _inputObject.GetComponentInChildren<TMP_InputField>();
-			inputField.text = _inputText;
+			Install();
 			yield return null;
-			inputField.onEndEdit.Invoke(inputField.text);
+
+			_input.InputField.text = _inputText;
+			yield return null;
+			_input.InputField.onEndEdit.Invoke(_input.InputField.text);
 			Assert.AreEqual(_inputText, _creationData.Name);
 			yield return null;
 		}
@@ -52,20 +62,24 @@ namespace SBaier.Datanet.Tests
 		[UnityTest]
 		public IEnumerator InputTextUpdatesOnCreationDataChange()
 		{
-			TMP_InputField inputField = _inputObject.GetComponentInChildren<TMP_InputField>();
+			Install();
+			yield return null;
+
 			_creationData.Name = _inputText;
 			yield return null;
-			Assert.AreEqual(_inputText, inputField.text);
+			Assert.AreEqual(_inputText, _input.InputField.text);
 			yield return null;
 		}
 
 		[UnityTest]
 		public IEnumerator ErrorDeletedOnInputChange()
 		{
-			TMP_InputField inputField = _inputObject.GetComponentInChildren<TMP_InputField>();
-			inputField.text = _inputText;
+			Install();
 			yield return null;
-			inputField.onValueChanged.Invoke(inputField.text);
+
+			_input.InputField.text = _inputText;
+			yield return null;
+			_input.InputField.onValueChanged.Invoke(_input.InputField.text);
 			Assert.AreEqual(string.Empty, _creationData.Error);
 			yield return null;
 		}

@@ -2,81 +2,96 @@
 
 using NUnit.Framework;
 using SBaier.Datanet.Core;
+using SBaier.Testing;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-	public class NetCreationButtonTest
+	[TestFixture]
+	public class NetCreationButtonTest: ZenjectIntegrationTestFixture
 	{
 		private const string _netName = "My Net";
 		private const string _existingNetName = "Existing Net";
 
-		private UITestHelper _testHelper;
-		private GameObject _canvas;
-		private GameObject _object;
+		
 
-		private DataNetCreationData _creationData;
-		private DataNetContainer _dataNetContainer;
-
-		[SetUp]
-		public void Setup()
+		public void Install()
 		{
-			_testHelper = new UITestHelper();
-			_canvas = _testHelper.CreateDefaultTestCanvas();
+			PreInstall();
 
-			GameObject prefab = Resources.Load(ResourcePaths.CreateNetButtonPrefabPath) as GameObject;
-			_object = GameObject.Instantiate(prefab, _canvas.transform);
-			_dataNetContainer = new DataNetContainerImpl();
-			DataNetFactory factory = new DataNetFactoryImpl(_dataNetContainer, new DataNetNameValidatorImpl());
-			_dataNetContainer.Add(factory.Create(new DataNetFactory.Parameter(_existingNetName)));
-			_creationData = new DataNetCreationData();
-			
-			DataNetCreationButton button = _object.GetComponentInChildren<DataNetCreationButton>();
-			button.Construct(factory, _dataNetContainer, _creationData);
+			//Setup scene
+			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
+			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
+			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+
+			//Do Bindings
+			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
+			Container.Bind<DataNetCreationData>().AsSingle();
+			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
+			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
+			Container.Bind<DataNetCreationButton>().FromComponentInNewPrefabResource(ResourcePaths.CreateNetButtonPrefabPath).AsSingle().NonLazy();
+
+			PostInstall();
+
+			//Init objects
+			_creationButton.transform.SetParent(_canvas.Hook, false);
+			_dataNetContainer.Add(_netFactory.Create(new DataNetFactory.Parameter(_existingNetName)));
 		}
 
-		[TearDown]
-		public void Teardown()
-		{
-			GameObject.Destroy(_object);
-			_testHelper.DestroyDefaultCanvas();
-		}
+
+		[Inject]
+		private DataNetCreationData _creationData = null;
+		[Inject]
+		private DataNetContainer _dataNetContainer = null;
+		[Inject]
+		private DataNetCreationButton _creationButton = null;
+		[Inject]
+		private UITestCanvas _canvas = null;
+		[Inject]
+		private DataNetFactory _netFactory = null;
 
 
 		[UnityTest]
-		public IEnumerator ErrorOnEmptyNameSet()
+		public IEnumerator SetsErrorOnEmptyNameSet()
 		{
-			_creationData.Name = "";
-			Button button = _object.GetComponentInChildren<Button>();
-			button.onClick.Invoke();
+			Install();
+			yield return null;
+
+			_creationData.Name = string.Empty;
+			_creationButton.Button.onClick.Invoke();
 			yield return null;
 			Assert.AreNotEqual(string.Empty, _creationData.Error);
 			yield return null;
 		}
 
 		[UnityTest]
-		public IEnumerator ErrorOnExistingNameSet()
+		public IEnumerator SetsErrorOnExistingNameSet()
 		{
+			Install();
+			yield return null;
+
 			_creationData.Name = _existingNetName;
-			Button button = _object.GetComponentInChildren<Button>();
-			button.onClick.Invoke();
+			_creationButton.Button.onClick.Invoke();
 			yield return null;
 			Assert.AreNotEqual(string.Empty, _creationData.Error);
 			yield return null;
 		}
 
 		[UnityTest]
-		public IEnumerator NetAddedOnClick()
+		public IEnumerator AddsNetOnClick()
 		{
-			_creationData.Name = _netName;
-			Button button = _object.GetComponentInChildren<Button>();
-			button.onClick.Invoke();
+			Install();
 			yield return null;
-			Assert.AreEqual(_dataNetContainer.Count, 2);
+
+			_creationData.Name = _netName;
+			_creationButton.Button.onClick.Invoke();
+			yield return null;
+			Assert.AreEqual(2, _dataNetContainer.Count);
 			Assert.IsNotNull(_dataNetContainer.DataNetsCopy.Where(n => n.Name.Equals(_netName)));
 			Assert.AreEqual(string.Empty, _creationData.Name);
 			Assert.AreEqual(string.Empty, _creationData.Error);

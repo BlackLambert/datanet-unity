@@ -9,7 +9,8 @@ namespace SBaier.Datanet
 	public class DataNetNameInput: MonoBehaviour
 	{
 		[SerializeField]
-		private TMP_InputField _input = null;
+		private TMP_InputField _inputField = null;
+		public TMP_InputField InputField { get { return _inputField; } }
 
 		private DataNetCreationData _netCreationData;
 
@@ -23,15 +24,15 @@ namespace SBaier.Datanet
 		protected virtual void Start()
 		{
 			_netCreationData.OnNameChanged += onNameChanged;
-			_input.onEndEdit.AddListener(onInputValueEdited);
-			_input.onValueChanged.AddListener(onInputValueChanged);
+			_inputField.onEndEdit.AddListener(onInputValueEdited);
+			_inputField.onValueChanged.AddListener(onInputValueChanged);
 		}
 
 		protected virtual void OnDestroy()
 		{
 			_netCreationData.OnNameChanged -= onNameChanged;
-			_input.onEndEdit.RemoveListener(onInputValueEdited);
-			_input.onValueChanged.RemoveListener(onInputValueChanged);
+			_inputField.onEndEdit.RemoveListener(onInputValueEdited);
+			_inputField.onValueChanged.RemoveListener(onInputValueChanged);
 		}
 
 		private void onInputValueEdited(string value)
@@ -46,7 +47,7 @@ namespace SBaier.Datanet
 
 		private void onNameChanged()
 		{
-			_input.text = _netCreationData.Name;
+			_inputField.text = _netCreationData.Name;
 		}
 	}
 }
