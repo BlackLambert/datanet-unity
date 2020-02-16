@@ -6,7 +6,7 @@ namespace SBaier.Datanet
 {
 	public class DataNetCreationData
 	{
-		private string _name;
+		private string _name = string.Empty;
 		public string Name
 		{
 			get { return _name; }
@@ -19,7 +19,7 @@ namespace SBaier.Datanet
 		public event Action OnNameChanged;
 
 
-		private string _error;
+		private string _error = string.Empty;
 		public string Error
 		{
 			get { return _error; }

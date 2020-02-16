@@ -1,2 +1,13 @@
 Datanet/Library
 Datanet/Temp
+Datanet/.vs
+Datanet/Assembly-CSharp.csproj
+Datanet/Assets/Plugins.meta
+Datanet/Assets/Plugins/
+Datanet/Assets/TextMesh Pro/
+Datanet/Assets/TextMesh Pro.meta
+*.csproj
+*.sln
+Datanet/obj/
+Datanet/Assets/InitTestScene637173100087157275.unity
+Datanet/Assets/InitTestScene637173100087157275.unity.meta

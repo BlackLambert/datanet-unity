@@ -55,7 +55,7 @@ namespace SBaier.Datanet
 		{
 			DataNetFactory.Parameter parameter = new DataNetFactory.Parameter(_creationData.Name);
 			DataNet result = _dataNetFactory.Create(parameter);
-			_dataNetContainer.AddDataNet(result);
+			_dataNetContainer.Add(result);
 		}
 	}
 }

@@ -1,35 +1,50 @@
 ﻿using System;
 using NUnit.Framework;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-    public class DataNetCreationDataTest
-    {
-		private const string _error = "Oh No! An error";
-		private const string _name = "My net";
+	[TestFixture]
+	public class DataNetCreationDataTest : ZenjectUnitTestFixture
+	{
+		private const string _fistError = "Oh No! An error";
+		private const string _firstName = "My net";
 		private const string _newError = "New error";
 		private const string _newName = "New name";
 
-		private DataNetCreationData _creationData;
+		
 
         [SetUp]
-        public void Setup()
+        public void Install()
         {
-			_creationData = new DataNetCreationData();
-			_creationData.Error = _error;
-			_creationData.Name = _name;
+			Container.Bind<DataNetCreationData>().AsTransient();
+			Container.Inject(this);
 		}
-	
-        // A Test behaves as an ordinary method
-        [Test]
-        public void InputEqualsOutput()
+
+
+		[Inject]
+		private DataNetCreationData _creationData = null;
+
+
+
+		[Test]
+        public void HasCorrectInitialState()
         {
-			Assert.AreEqual(_creationData.Error, _error);
-			Assert.AreEqual(_creationData.Name, _name);
+			Assert.AreEqual(string.Empty, _creationData.Error);
+			Assert.AreEqual(string.Empty, _creationData.Name);
 		}
 
 		[Test]
-		public void ErrorChangedEventCalled()
+		public void Error_SetAndGetWorking()
+		{
+			_creationData.Error = _fistError;
+			Assert.AreEqual(_fistError, _creationData.Error);
+			_creationData.Error = _newError;
+			Assert.AreEqual(_newError, _creationData.Error);
+		}
+
+		[Test]
+		public void Error_EventCalled()
 		{
 			bool called = false;
 			Action listener = () =>
@@ -44,7 +59,16 @@ namespace SBaier.Datanet.Tests
 		}
 
 		[Test]
-		public void NameChangedEventCalled()
+		public void Name_SetAndGetWorking()
+		{
+			_creationData.Name = _firstName;
+			Assert.AreEqual(_firstName, _creationData.Name);
+			_creationData.Name = _newName;
+			Assert.AreEqual(_newName, _creationData.Name);
+		}
+
+		[Test]
+		public void Name_EventCalled()
 		{
 			bool called = false;
 			Action listener = () =>

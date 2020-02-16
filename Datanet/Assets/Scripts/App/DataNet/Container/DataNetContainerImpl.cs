@@ -18,18 +18,18 @@ namespace SBaier.Datanet.Core
 			_idToDataNet = new Dictionary<Guid, DataNet>();
 		}
 
-		public override void AddDataNet(DataNet value)
+		public override void Add(DataNet value)
 		{
 			_idToDataNet.Add(value.ID, value);
 			OnNetAdded?.Invoke(value);
 		}
 
-		public override DataNet GetDataNet(Guid iD)
+		public override DataNet Get(Guid iD)
 		{
 			return _idToDataNet[iD];
 		}
 
-		public override void RemoveDataNet(Guid iD)
+		public override void Remove(Guid iD)
 		{
 			DataNet netToRemove = _idToDataNet[iD];
 			_idToDataNet.Remove(iD);

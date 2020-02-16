@@ -11,9 +11,9 @@ namespace SBaier.Datanet.Core
 		public abstract event Action<DataNet> OnNetRemoved;
 		public abstract int Count { get; }
 		public abstract IEnumerable<DataNet> DataNetsCopy { get; }
-		public abstract void AddDataNet(DataNet value);
-		public abstract DataNet GetDataNet(Guid iD);
-		public abstract void RemoveDataNet(Guid iD);
+		public abstract void Add(DataNet value);
+		public abstract DataNet Get(Guid iD);
+		public abstract void Remove(Guid iD);
 		public abstract bool Contains(Guid iD);
 	}
 }

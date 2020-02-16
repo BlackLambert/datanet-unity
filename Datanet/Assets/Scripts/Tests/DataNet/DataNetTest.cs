@@ -1,30 +1,37 @@
 ﻿using NUnit.Framework;
 using SBaier.Datanet.Core;
 using System;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-    public class DataNetTest
-    {
+	[TestFixture]
+	public class DataNetTest : ZenjectUnitTestFixture
+	{
 		private const string _netName = "TestNet";
 		private const string _newNetName = "NewName";
-
-
-		private Guid _netGuid;
-		private NodeContainer _nodeContainer;
-		private DataNet _netToTest;
 		
 
 		[SetUp]
-		public void Setup()
+		public void Install()
 		{
-			_netGuid = Guid.NewGuid();
-			_nodeContainer = new NodeContainerDummy();
-			_netToTest = new DataNet(_netGuid, _nodeContainer, _netName);
+			Guid guid = Guid.NewGuid();
+			Container.Bind<Guid>().FromInstance(guid).AsTransient();
+			NodeContainerDummy nodeContainer = new NodeContainerDummy();
+			Container.Bind<NodeContainer>().To<NodeContainerDummy>().FromInstance(nodeContainer).AsTransient();
+			Container.Bind<DataNet>().FromInstance(new DataNet(guid, nodeContainer, _netName)).AsTransient();
+			Container.Inject(this);
 		}
 
-        [Test]
-        public void ConstructorInputEqualsOutput()
+		[Inject]
+		private Guid _netGuid = Guid.Empty;
+		[Inject]
+		private NodeContainer _nodeContainer = null;
+		[Inject]
+		private DataNet _netToTest = null;
+
+		[Test]
+        public void HasExpectedValues()
         {
 			Assert.AreEqual(_netName, _netToTest.Name);
 			Assert.AreEqual(_netGuid, _netToTest.ID);
@@ -32,7 +39,15 @@ namespace SBaier.Datanet.Tests
 		}
 
 		[Test]
-		public void OnNameChangedTriggered()
+		public void Name_SetAndGetWorking()
+		{
+			Assert.AreEqual(_netName, _netToTest.Name);
+			_netToTest.Name = _newNetName;
+			Assert.AreEqual(_newNetName, _netToTest.Name);
+		}
+
+		[Test]
+		public void Name_EventTriggered()
 		{
 			bool called = false;
 			Action listerner = () =>

@@ -17,7 +17,7 @@ namespace SBaier.Datanet.Core
 		public override event Action<DataNet> OnNetAdded;
 		public override event Action<DataNet> OnNetRemoved;
 
-		public override void AddDataNet(DataNet value)
+		public override void Add(DataNet value)
 		{
 			Debug.Log("Adding net to dummy container");
 			OnNetAdded?.Invoke(value);
@@ -29,12 +29,12 @@ namespace SBaier.Datanet.Core
 			return true;
 		}
 
-		public override DataNet GetDataNet(Guid iD)
+		public override DataNet Get(Guid iD)
 		{
 			return new DataNetFactoryDummy().Create(new DataNetFactory.Parameter(iD, _netName));
 		}
 
-		public override void RemoveDataNet(Guid iD)
+		public override void Remove(Guid iD)
 		{
 			Debug.Log("Removing net from dummy container");
 			OnNetRemoved?.Invoke(new DataNetFactoryDummy().Create(new DataNetFactory.Parameter(iD, _netName)));

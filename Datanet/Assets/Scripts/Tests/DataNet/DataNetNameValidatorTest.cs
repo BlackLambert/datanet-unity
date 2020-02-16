@@ -4,44 +4,55 @@ using NUnit.Framework;
 using SBaier.Datanet.Core;
 using System;
 using System.Collections.Generic;
+using Zenject;
 
 namespace SBaier.Datanet.Tests
 {
-	public class DataNetNameValidatorTest
+	[TestFixture]
+	public class DataNetNameValidatorTest : ZenjectUnitTestFixture
 	{
 		private const string _newNetName = "New Net";
 		private const string _existingNetName = "Existing Net";
-		private List<DataNet> _existingNets;
-		private DataNetNameValidator _validator;
+		
 
 		[SetUp]
-		public void Setup()
+		public void Install()
 		{
-			_existingNets = new List<DataNet>();
-			_existingNets.Add(new DataNet(Guid.NewGuid(), new NodeContainerDummy(), _existingNetName));
-			_validator = new DataNetNameValidatorImpl();
+			List<DataNet> existingNets = new List<DataNet>();
+			existingNets.Add(new DataNet(Guid.NewGuid(), new NodeContainerDummy(), _existingNetName));
+
+			Container.Bind<List<DataNet>>().FromInstance(existingNets).AsTransient();
+			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsTransient();
+			Container.Inject(this);
 		}
 
+
+		[Inject]
+		private List<DataNet> _existingNets = null;
+		[Inject]
+		private DataNetNameValidator _validator = null;
+
+
 		[Test]
-		public void EmptyNameThrowsException()
+		public void Validate_ThrowsExceptionOnEmptyName()
 		{
 			Assert.Throws<ArgumentNullException>(() => _validator.Validate(string.Empty, _existingNets));
 		}
 
 		[Test]
-		public void ExistingNameThrowsException()
+		public void Validate_ThrowsExceptionOnExistingName()
 		{
 			Assert.Throws<ArgumentException>(() => _validator.Validate(_existingNetName, _existingNets));
 		}
 
 		[Test]
-		public void ValidNamePassesTest()
+		public void Validate_PassesOnValidName()
 		{
 			Assert.DoesNotThrow(() => _validator.Validate(_newNetName, _existingNets));
 		}
 
 		[Test]
-		public void EmptyExistingNetIsAllowed()
+		public void Validate_PassesOnNoExistingNets()
 		{
 			Assert.DoesNotThrow(() => _validator.Validate(_newNetName, new List<DataNet>()));
 		}

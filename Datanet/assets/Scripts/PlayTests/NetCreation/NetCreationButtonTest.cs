@@ -32,7 +32,7 @@ namespace SBaier.Datanet.Tests
 			_object = GameObject.Instantiate(prefab, _canvas.transform);
 			_dataNetContainer = new DataNetContainerImpl();
 			DataNetFactory factory = new DataNetFactoryImpl(_dataNetContainer, new DataNetNameValidatorImpl());
-			_dataNetContainer.AddDataNet(factory.Create(new DataNetFactory.Parameter(_existingNetName)));
+			_dataNetContainer.Add(factory.Create(new DataNetFactory.Parameter(_existingNetName)));
 			_creationData = new DataNetCreationData();
 			
 			DataNetCreationButton button = _object.GetComponentInChildren<DataNetCreationButton>();
