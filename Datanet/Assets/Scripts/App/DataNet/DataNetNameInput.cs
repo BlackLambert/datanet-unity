@@ -13,6 +13,7 @@ namespace SBaier.Datanet
 		public TMP_InputField InputField { get { return _inputField; } }
 
 		private DataNetCreationData _netCreationData;
+		public DataNetCreationData CreationData { get { return _netCreationData; } }
 
 		[Inject]
 		public void Construct(DataNetCreationData netCreationData)

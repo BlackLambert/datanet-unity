@@ -40,6 +40,7 @@ namespace SBaier.Datanet.Tests
 		public IEnumerator UserSelectsExistingNet()
 		{
 			yield return Install();
+			yield return 0;
 
 			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetScene).isLoaded);
 			DataNet firstNet = _netFactory.Create(new DataNetFactory.Parameter(_firstNetName));
@@ -55,17 +56,22 @@ namespace SBaier.Datanet.Tests
 			Assert.AreEqual(firstNet, _selectedNet.Selected);
 			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.MainScene).isLoaded);
 			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.NetScene).isLoaded);
+			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetSelectionScene).isLoaded);
 		}
 
 		[UnityTest]
 		public IEnumerator UserCreatesTwoNetsWithAllErrors()
 		{
 			yield return Install();
+			yield return 0;
 
 			// Checks initial state and clicks create button
+			Assert.AreEqual(1, GameObject.FindObjectsOfType<DataNetCreationErrorDisplay>().Length);
 			DataNetCreationErrorDisplay errorDisplay = GameObject.FindObjectOfType<DataNetCreationErrorDisplay>();
+			Assert.AreEqual(_creationData.GetHashCode(), errorDisplay.CreationData.GetHashCode());
 			checkErrorDisplayEmpty(errorDisplay);
 			DataNetNameInput nameInput = GameObject.FindObjectOfType<DataNetNameInput>();
+			Assert.AreEqual(_creationData.GetHashCode(), nameInput.CreationData.GetHashCode());
 			checkInputFieldEmpty(nameInput);
 			DataNetCreationButton creationButton = GameObject.FindObjectOfType<DataNetCreationButton>();
 			creationButton.Button.onClick.Invoke();

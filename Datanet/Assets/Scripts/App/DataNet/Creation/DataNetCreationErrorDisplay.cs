@@ -13,6 +13,7 @@ namespace SBaier.Datanet
 		public TextMeshProUGUI TextField { get { return _textField; } }
 
 		private DataNetCreationData _creationData;
+		public DataNetCreationData CreationData { get { return _creationData; } }
 
 		[Inject]
 		public void Construct(DataNetCreationData creationData)
