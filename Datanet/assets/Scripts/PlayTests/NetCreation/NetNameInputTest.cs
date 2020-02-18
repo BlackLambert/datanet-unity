@@ -28,7 +28,7 @@ namespace SBaier.Datanet.Tests
 
 			//Bindings
 			Container.Bind<DataNetCreationData>().AsSingle();
-			Container.Bind<DataNetNameInput>().FromComponentInNewPrefabResource(ResourcePaths.NetNameInputPrefabPath).AsSingle().NonLazy();
+			Container.Bind<DataNetNameInput>().FromComponentInNewPrefabResource(ResourcePaths.NetNameInput).AsSingle().NonLazy();
 
 			PostInstall();
 

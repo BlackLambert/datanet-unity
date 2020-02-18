@@ -8,7 +8,7 @@ using SBaier.Datanet.Core;
 
 namespace SBaier.Datanet.Tests
 {
-	public class ExistingNetsOverviewTest : ZenjectIntegrationTestFixture
+	public class ExistingNetsOverviewTest : UIIntegrationTestFixture
 	{
 		private const string _firstNetName = "My net";
 		private const string _secondNetName = "My second net";
@@ -19,12 +19,10 @@ namespace SBaier.Datanet.Tests
 			PreInstall();
 
 			//Setup scene
-			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
-			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
-			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+			PrepareHightMatchingCanvasStage(Container, new DataNetUITestPrefabPaths());
 
 			//Bindings
-			Container.Bind(typeof(ExistingNetOverviewInstaller), typeof(NetSelectionElementsCreator)).FromComponentInNewPrefabResource(ResourcePaths.ExistingNetsOverviewPrefabPath).AsSingle().NonLazy();
+			Container.Bind(typeof(ExistingNetOverviewInstaller), typeof(NetSelectionElementsCreator)).FromComponentInNewPrefabResource(ResourcePaths.ExistingNetsOverview).AsSingle().NonLazy();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
 			Container.Bind<SelectedDataNet>().AsSingle();
 			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();

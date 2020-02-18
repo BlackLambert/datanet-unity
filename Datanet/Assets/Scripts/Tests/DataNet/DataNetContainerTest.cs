@@ -53,6 +53,12 @@ namespace SBaier.Datanet.Tests
 		}
 
 		[Test]
+		public void DataNetsCopy_IsACopy()
+		{
+			Assert.AreNotSame(_container.DataNetsCopy, _container.DataNetsCopy);
+		}
+
+		[Test]
 		public void Contains_ReturnsCorrectValue()
 		{
 			Assert.True(_container.Contains(_netInContainer.ID));

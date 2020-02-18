@@ -21,9 +21,9 @@ namespace SBaier.Datanet
 		}
 
 		[Inject]
-		private SelectedDataNet _selectedDataNet;
+		private SelectedDataNet _selectedDataNet = null;
 		[Inject]
-		private DataNetFactory _dataNetFactory;
+		private DataNetFactory _dataNetFactory =  null;
 		private DataNet _netToSelect;
 
 		[Test]
@@ -43,8 +43,10 @@ namespace SBaier.Datanet
 		public void Selected_EventCalled()
 		{
 			bool called = false;
-			Action listerner = () =>
+			SelectedDataNet.OnSelectedNetChangedAction listerner = (formerNet, newNet) =>
 			{
+				Assert.AreEqual(string.Empty, formerNet);
+				Assert.AreEqual(_netToSelect, newNet);
 				called = true;
 			};
 			_selectedDataNet.OnSelectedChanged += listerner;

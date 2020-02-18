@@ -11,7 +11,7 @@ namespace SBaier.Datanet
 	public class SceneLoaderOnStart : MonoBehaviour
 	{
 		[SerializeField]
-		private List<SceneToLaod> _scenesToLoad;
+		private List<SceneToLaod> _scenesToLoad = null;
 
 
 		protected virtual void Start()

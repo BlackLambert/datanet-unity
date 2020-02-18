@@ -28,7 +28,7 @@ namespace SBaier.Datanet.Tests
 
 			//Bindings
 			Container.Bind<SelectedDataNet>().AsSingle();
-			Container.Bind(typeof(NetSelectionElementInstaller), typeof(SelectNetOnClick), typeof(NetNameDisplay),  typeof(SceneLoaderOnClick), typeof(SceneUnloaderOnClick)).FromComponentInNewPrefabResource(ResourcePaths.NetSelectionElementPrefabPath).AsSingle().NonLazy();
+			Container.Bind(typeof(NetSelectionElementInstaller), typeof(SelectNetOnClick), typeof(NetNameDisplay),  typeof(SceneLoaderOnClick), typeof(SceneUnloaderOnClick)).FromComponentInNewPrefabResource(ResourcePaths.NetSelectionElement).AsSingle().NonLazy();
 			DataNetFactory factory = new DataNetFactoryDummy();
 			Container.Bind<DataNet>().FromInstance(factory.Create(new DataNetFactory.Parameter(_netName))).AsSingle();
 
@@ -106,7 +106,7 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return null;
 
-			Assert.AreEqual(SceneNames.NetScene, _sceneLoaderOnClick.SceneName);
+			Assert.AreEqual(SceneNames.NetWorkspaceScene, _sceneLoaderOnClick.SceneName);
 			yield return null;
 		}
 
@@ -126,7 +126,7 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return null;
 
-			Assert.AreEqual(SceneNames.NetSelectionScene, _sceneUnloaderOnClick.SceneName);
+			Assert.AreEqual(SceneNames.NetSelection, _sceneUnloaderOnClick.SceneName);
 			yield return null;
 		}
 	}

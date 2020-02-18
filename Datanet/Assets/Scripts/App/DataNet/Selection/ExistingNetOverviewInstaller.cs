@@ -8,7 +8,7 @@ namespace SBaier.Datanet
 
 		public override void InstallBindings()
 		{
-			Container.Bind<NetSelectionElementInstaller>().FromResource(ResourcePaths.NetSelectionElementPrefabPath).AsSingle();
+			Container.Bind<NetSelectionElementInstaller>().FromResource(ResourcePaths.NetSelectionElement).AsSingle();
 		}
 	}
 }

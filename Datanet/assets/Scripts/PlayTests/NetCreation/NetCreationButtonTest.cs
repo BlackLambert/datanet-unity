@@ -34,7 +34,7 @@ namespace SBaier.Datanet.Tests
 			Container.Bind<DataNetCreationData>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
-			Container.Bind<DataNetCreationButton>().FromComponentInNewPrefabResource(ResourcePaths.CreateNetButtonPrefabPath).AsSingle().NonLazy();
+			Container.Bind<DataNetCreationButton>().FromComponentInNewPrefabResource(ResourcePaths.CreateNetButton).AsSingle().NonLazy();
 
 			PostInstall();
 

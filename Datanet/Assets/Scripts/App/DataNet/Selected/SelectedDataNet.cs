@@ -13,15 +13,18 @@ namespace SBaier.Datanet
 			get { return _selected; }
 			set
 			{
+				DataNet former = _selected;
 				_selected = value;
-				OnSelectedChanged?.Invoke();
+				OnSelectedChanged?.Invoke(former, _selected);
 			}
 		}
-		public event Action OnSelectedChanged;
+		public event OnSelectedNetChangedAction OnSelectedChanged;
 
 		public SelectedDataNet()
 		{
 
 		}
+
+		public delegate void OnSelectedNetChangedAction(DataNet formerNet, DataNet newNet);
 	}
 }

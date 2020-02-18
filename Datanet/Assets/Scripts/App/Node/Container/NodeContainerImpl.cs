@@ -8,6 +8,9 @@ namespace SBaier.Datanet.Core
 	public class NodeContainerImpl : NodeContainer
 	{
 		private Dictionary<Guid, Node> _iDToNode;
+		public override IEnumerable<Node> IDToNodeCopy => new List<Node>(_iDToNode.Values);
+		public override event Action<Node> OnNodeAdded;
+		public override event Action<Node> OnNodeRemoved;
 
 		public override int Count => _iDToNode.Count;
 
@@ -19,17 +22,20 @@ namespace SBaier.Datanet.Core
 
 		public override void AddNode(Node node)
 		{
-			throw new NotImplementedException();
+			_iDToNode.Add(node.ID, node);
+			OnNodeAdded?.Invoke(node);
 		}
 
 		public override void RemoveNode(Guid nodeID)
 		{
-			throw new NotImplementedException();
+			Node removedNode = _iDToNode[nodeID];
+			_iDToNode.Remove(nodeID);
+			OnNodeRemoved?.Invoke(removedNode);
 		}
 
 		public override Node GetNode(Guid nodeID)
 		{
-			throw new NotImplementedException();
+			return _iDToNode[nodeID];
 		}
 	}
 }

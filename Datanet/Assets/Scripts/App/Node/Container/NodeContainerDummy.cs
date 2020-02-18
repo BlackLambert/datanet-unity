@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections.Generic;
 using SBaier.Datanet.Core;
 using UnityEngine;
 
@@ -17,9 +18,14 @@ namespace SBaier.Datanet.Core
 
 		public override int Count => 0;
 
+		public override IEnumerable<Node> IDToNodeCopy => new List<Node>();
+		public override event Action<Node> OnNodeAdded;
+		public override event Action<Node> OnNodeRemoved;
+
 		public override void AddNode(Node node)
 		{
 			Debug.Log("Successfuly added node to dummy container");
+			OnNodeAdded.Invoke(node);
 		}
 
 		public override Node GetNode(Guid nodeID)
@@ -31,6 +37,7 @@ namespace SBaier.Datanet.Core
 		public override void RemoveNode(Guid nodeID)
 		{
 			Debug.Log("Successfuly removed node from dummy container");
+			OnNodeRemoved.Invoke(new NodeFactoryDummy().Create(new NodeFactory.Parameter(nodeID, Guid.Empty)));
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace SBaier.Datanet.Tests
 		{
 
 			//Setup scene
-			yield return LoadScenes(SceneNames.MainScene, SceneNames.NetSelectionScene);
+			yield return LoadScenes(SceneNames.MainScene, SceneNames.NetSelection);
 
 			//Init Objects
 			
@@ -42,7 +42,7 @@ namespace SBaier.Datanet.Tests
 			yield return Install();
 			yield return 0;
 
-			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetScene).isLoaded);
+			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetWorkspaceScene).isLoaded);
 			DataNet firstNet = _netFactory.Create(new DataNetFactory.Parameter(_firstNetName));
 			_container.Add(firstNet);
 			yield return 0;
@@ -55,8 +55,8 @@ namespace SBaier.Datanet.Tests
 			yield return new WaitForSeconds(1);
 			Assert.AreEqual(firstNet, _selectedNet.Selected);
 			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.MainScene).isLoaded);
-			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.NetScene).isLoaded);
-			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetSelectionScene).isLoaded);
+			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.NetWorkspaceScene).isLoaded);
+			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetSelection).isLoaded);
 		}
 
 		[UnityTest]

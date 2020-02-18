@@ -1,5 +1,6 @@
 ﻿
 
+using SBaier.Datanet.Core;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ namespace SBaier.Datanet
 	{
 		[SerializeField]
 		private TextMeshProUGUI _text = null;
+		public TextMeshProUGUI Text { get { return _text; } }
 
 		private SelectedDataNet _selectedDataNet;
 
@@ -32,7 +34,7 @@ namespace SBaier.Datanet
 				_selectedDataNet.OnSelectedChanged -= onSelectedNetChange;
 		}
 
-		private void onSelectedNetChange()
+		private void onSelectedNetChange(DataNet formerNet, DataNet newNet)
 		{
 			updateText();
 		}

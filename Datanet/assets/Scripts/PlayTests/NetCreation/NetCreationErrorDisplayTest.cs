@@ -28,7 +28,7 @@ namespace SBaier.Datanet.Tests
 
 			//Bindings
 			Container.Bind<DataNetCreationData>().AsSingle();
-			Container.Bind<DataNetCreationErrorDisplay>().FromComponentInNewPrefabResource(ResourcePaths.NetCreationErrorDisplayPrefabPath).AsSingle().NonLazy();
+			Container.Bind<DataNetCreationErrorDisplay>().FromComponentInNewPrefabResource(ResourcePaths.NetCreationErrorDisplay).AsSingle().NonLazy();
 
 			PostInstall();
 

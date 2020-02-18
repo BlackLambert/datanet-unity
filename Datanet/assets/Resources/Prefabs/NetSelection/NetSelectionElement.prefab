@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 3856296613860688343}
-  _sceneName: Net
+  _sceneName: NetWorkspace
   _additive: 1
 --- !u!114 &4854564949040832166
 MonoBehaviour:

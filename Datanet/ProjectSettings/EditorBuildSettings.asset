@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/NetSelection.unity
     guid: 0b0d2a21412efa642bd1e3240eaeae40
   - enabled: 1
-    path: Assets/Scenes/Net.unity
+    path: Assets/Scenes/NetWorkspace.unity
     guid: 26b5ae20ed9ebd54fb7a8b578b525461
   m_configObjects: {}
