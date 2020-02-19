@@ -17,8 +17,5 @@ namespace SBaier.Datanet
 		public const string NetDashboard_NodeTemplateSelectionButton = "Prefabs/NetWorkspace/Dashboard/ShowNodeTemplateSelectionButton";
 		public const string NodeTemplateSelectionPopupContent = "Prefabs/NetWorkspace/Dashboard/NodeTemplateSelectionPopupContent";
 
-		public const string PopupBase = "Prefabs/Popups/PopupBase";
-		public const string ClosablePopupStructure = "Prefabs/Popups/ClosablePopupStructure";
-		public const string SubmitPopupStructure = "Prefabs/Popups/SubmitPopupStructure";
 	}
 }

@@ -1,7 +1,7 @@
 using Zenject;
 using System.Collections;
 using UnityEngine.TestTools;
-using SBaier.Testing;
+using SBaier.Testing.UI;
 using SBaier.Datanet.Core;
 using NUnit.Framework;
 using UnityEngine;
@@ -14,11 +14,12 @@ namespace SBaier.Datanet.Tests
 		public void Install()
 		{
 			PreInstall();
-			PrepareHightMatchingCanvasStage(Container, new DataNetUITestPrefabPaths());
+			PrepareHightMatchingCanvasStage(Container);
 
 			//Bindings
 			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsSingle();
 			Container.Bind<PrefabFactory>().AsSingle();
+			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
 			Container.Bind(typeof(ShowNodeTemplateSelectionButton)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_NodeTemplateSelectionButton).AsSingle().NonLazy();
 			PostInstall();
 

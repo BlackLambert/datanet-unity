@@ -1,7 +1,7 @@
 using Zenject;
 using System.Collections;
 using UnityEngine.TestTools;
-using SBaier.Testing;
+using SBaier.Testing.UI;
 using NUnit.Framework;
 using SBaier.Datanet.Core;
 
@@ -16,7 +16,7 @@ namespace SBaier.Datanet.Tests
 			PreInstall();
 
 			//Setup scene
-			PrepareHightMatchingCanvasStage(Container, new DataNetUITestPrefabPaths());
+			PrepareHightMatchingCanvasStage(Container);
 
 			//Bindings
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();

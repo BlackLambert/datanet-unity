@@ -3,6 +3,7 @@
 using NUnit.Framework;
 using SBaier.Datanet.Core;
 using SBaier.Testing;
+using SBaier.Testing.UI;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace SBaier.Datanet.Tests
 			PreInstall();
 
 			//Setup scene
-			UITestPrefabPaths paths = new DataNetUITestPrefabPaths();
+			UITestResourcePaths paths = new DefaultUITestingResourcePaths();
 			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
 			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
 

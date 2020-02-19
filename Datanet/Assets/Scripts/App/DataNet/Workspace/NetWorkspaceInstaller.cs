@@ -13,8 +13,9 @@ namespace SBaier.Datanet
 		public override void InstallBindings()
 		{
 			Container.Bind<DataNet>().FromInstance(_selectedDataNet.Selected).AsSingle();
-			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsSingle();
-			Container.Bind<PrefabFactory>().AsSingle();
+			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsTransient();
+			Container.Bind<PrefabFactory>().AsTransient();
+			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
 		}
 	}
 }

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using SBaier.Datanet.Core;
 using System;
 
-namespace SBaier.Datanet
+namespace SBaier.Datanet.Tests
 {
 	[TestFixture]
 	public class SelectedDataNetTest : ZenjectUnitTestFixture
@@ -45,7 +45,7 @@ namespace SBaier.Datanet
 			bool called = false;
 			SelectedDataNet.OnSelectedNetChangedAction listerner = (formerNet, newNet) =>
 			{
-				Assert.AreEqual(string.Empty, formerNet);
+				Assert.AreEqual(null, formerNet);
 				Assert.AreEqual(_netToSelect, newNet);
 				called = true;
 			};

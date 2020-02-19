@@ -5,6 +5,8 @@ using SBaier.Testing;
 using UnityEngine;
 using NUnit.Framework;
 using TMPro;
+using SBaier.SceneManagement;
+using SBaier.Testing.UI;
 
 namespace SBaier.Datanet.Tests
 {
@@ -15,7 +17,7 @@ namespace SBaier.Datanet.Tests
 			PreInstall();
 
 			//Setup scene
-			PrepareHightMatchingCanvasStage(Container, new DataNetUITestPrefabPaths());
+			PrepareHightMatchingCanvasStage(Container);
 
 			//Bindings
 			Container.Bind(typeof(SceneLoaderOnClick), typeof(SceneUnloaderOnClick), typeof(TextMeshProUGUI)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_BackToNetSelectionButton).AsSingle().NonLazy();
