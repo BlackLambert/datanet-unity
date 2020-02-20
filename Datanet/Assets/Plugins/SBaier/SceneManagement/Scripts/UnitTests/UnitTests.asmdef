@@ -1,0 +1,6 @@
+﻿{
+    "name": "SBaier.SceneManagement.UnitTests",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

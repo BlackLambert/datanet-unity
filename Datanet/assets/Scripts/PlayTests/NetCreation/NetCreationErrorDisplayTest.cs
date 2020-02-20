@@ -12,7 +12,7 @@ using Zenject;
 namespace SBaier.Datanet.Tests
 {
 	[TestFixture]
-	public class NetCreationErrorDisplayTest : ZenjectIntegrationTestFixture
+	public class NetCreationErrorDisplayTest : UIIntegrationTestFixture
 	{
 		private const string _emptyError = "";
 		private const string _errorName = "Horrible Error!";
@@ -23,9 +23,7 @@ namespace SBaier.Datanet.Tests
 			PreInstall();
 
 			//Setup scene
-			UITestResourcePaths paths = new DefaultUITestingResourcePaths();
-			Container.Bind<UITestCanvas>().FromComponentInNewPrefabResource(paths.HightMatchingCanvasPath).AsSingle().NonLazy();
-			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
+			PrepareHightMatchingCanvasStage(Container);
 
 			//Bindings
 			Container.Bind<DataNetCreationData>().AsSingle();
