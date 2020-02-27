@@ -4,6 +4,7 @@ using NUnit.Framework;
 using SBaier.Datanet.Core;
 using System;
 using Zenject;
+using SBaier.Storage;
 
 namespace SBaier.Datanet.Tests
 {
@@ -16,7 +17,7 @@ namespace SBaier.Datanet.Tests
 		[SetUp]
 		public void Install()
 		{
-			Container.Bind<DataNetContainer>().To<DataNetContainerDummy>().AsTransient();
+			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryDummy>().AsTransient();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorDummy>().AsTransient();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsTransient();
 			Container.Bind<DataNetFactory.Parameter>().FromInstance(new DataNetFactory.Parameter(Guid.NewGuid(), _netName)).AsTransient();

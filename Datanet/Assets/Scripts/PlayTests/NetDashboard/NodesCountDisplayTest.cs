@@ -20,7 +20,7 @@ namespace SBaier.Datanet.Tests
 
 			//Bindings
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
-			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
+			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
 			DataNet data = Container.Resolve<DataNetFactory>().Create(new DataNetFactory.Parameter(_netName));
 			Container.Bind<DataNet>().FromInstance(data).AsSingle();

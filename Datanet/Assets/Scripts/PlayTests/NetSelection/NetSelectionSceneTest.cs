@@ -8,6 +8,8 @@ using SBaier.Datanet.Core;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
+using System;
 
 namespace SBaier.Datanet.Tests
 {
@@ -18,12 +20,11 @@ namespace SBaier.Datanet.Tests
 
 		public IEnumerator Install()
 		{
-
 			//Setup scene
-			yield return LoadScenes(SceneNames.MainScene, SceneNames.NetSelection);
+			yield return LoadScene(SceneNames.MainScene);
+			yield return LoadScene(SceneNames.NetSelection);
 
 			//Init Objects
-			
 		}
 
 		[Inject]
@@ -31,7 +32,7 @@ namespace SBaier.Datanet.Tests
 		[Inject]
 		private DataNetCreationData _creationData = null;
 		[Inject]
-		private DataNetContainer _container = null;
+		private DataNetsRepository _dataNetsRepository = null;
 		[Inject]
 		private DataNetFactory _netFactory = null;
 
@@ -44,12 +45,12 @@ namespace SBaier.Datanet.Tests
 
 			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetWorkspaceScene).isLoaded);
 			DataNet firstNet = _netFactory.Create(new DataNetFactory.Parameter(_firstNetName));
-			_container.Add(firstNet);
+			_dataNetsRepository.Add(firstNet);
 			yield return 0;
 			NetSelectionElementsCreator _elementsCreator = GameObject.FindObjectOfType<NetSelectionElementsCreator>();
 			Assert.AreEqual(1, _elementsCreator.ElementsCopy.Count);
-			Assert.True(_elementsCreator.ElementsCopy.ContainsKey(firstNet.ID));
-			NetSelectionElementInstaller element = _elementsCreator.ElementsCopy[firstNet.ID];
+			Assert.True(_elementsCreator.ElementsCopy.ContainsKey(new KeyValuePair<Guid, DataNet>(firstNet.ID, firstNet)));
+			NetSelectionElementInstaller element = _elementsCreator.ElementsCopy[new KeyValuePair<Guid, DataNet>(firstNet.ID, firstNet)];
 			Button button = element.GetComponentInChildren<Button>();
 			button.onClick.Invoke();
 			yield return new WaitForSeconds(1);
@@ -136,9 +137,9 @@ namespace SBaier.Datanet.Tests
 
 		private void checkNetElementsCreated(NetSelectionElementsCreator netSelectionElementsCreator)
 		{
-			foreach (DataNet net in _container.DataNetsCopy)
-				Assert.IsNotNull(netSelectionElementsCreator.ElementsCopy[net.ID]);
-			Assert.AreEqual(_container.DataNetsCopy.Count(), netSelectionElementsCreator.ElementsCopy.Count);
+			foreach (DataNet net in _dataNetsRepository.Copy().Values)
+				Assert.IsNotNull(netSelectionElementsCreator.ElementsCopy[new KeyValuePair<Guid, DataNet>(net.ID, net)]);
+			Assert.AreEqual(_dataNetsRepository.Count, netSelectionElementsCreator.ElementsCopy.Count);
 		}
 	}
 }

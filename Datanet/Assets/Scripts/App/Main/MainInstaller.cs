@@ -1,6 +1,9 @@
 using SBaier.Datanet.Core;
 using UnityEngine;
 using Zenject;
+using SBaier.Storage;
+using System;
+using System.Collections.Generic;
 
 namespace SBaier.Datanet
 {
@@ -8,7 +11,8 @@ namespace SBaier.Datanet
 	{
 		public override void InstallBindings()
 		{
-			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
+			Container.Bind(typeof(DataNetsRepository), typeof(ICollectionRepository<KeyValuePair<Guid, DataNet>>)).
+				To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<SelectedDataNet>().To<SelectedDataNet>().AsSingle();
 		}
 	}

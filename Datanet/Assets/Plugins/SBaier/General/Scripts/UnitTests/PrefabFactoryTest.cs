@@ -28,11 +28,11 @@ namespace SBaier.Tests
 		private TestInjectable _injectable;
 		private TestInjectable _boundInjectable;
 		[Inject]
-		private TestObject _testObjectPrefab;
+		private TestObject _testObjectPrefab = null;
 		[Inject]
-		private GameObject _simpleTestObjectPrefab;
+		private GameObject _simpleTestObjectPrefab = null;
 		[Inject]
-		private PrefabFactory _prefabFactory;
+		private PrefabFactory _prefabFactory = null;
 
 		[Test]
 		public void Create_WorksForSimplePrefab()

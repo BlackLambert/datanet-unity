@@ -31,7 +31,7 @@ namespace SBaier.Datanet.Tests
 			Container.Bind<Camera>().FromComponentInNewPrefabResource(paths.TestCameraPath).AsSingle().NonLazy();
 
 			//Do Bindings
-			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
+			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<DataNetCreationData>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
@@ -41,14 +41,15 @@ namespace SBaier.Datanet.Tests
 
 			//Init objects
 			_creationButton.transform.SetParent(_canvas.Hook, false);
-			_dataNetContainer.Add(_netFactory.Create(new DataNetFactory.Parameter(_existingNetName)));
+			DataNet net = _netFactory.Create(new DataNetFactory.Parameter(_existingNetName));
+			_dataNetContainer.Add(net);
 		}
 
 
 		[Inject]
 		private DataNetCreationData _creationData = null;
 		[Inject]
-		private DataNetContainer _dataNetContainer = null;
+		private DataNetsRepository _dataNetContainer = null;
 		[Inject]
 		private DataNetCreationButton _creationButton = null;
 		[Inject]
@@ -93,7 +94,7 @@ namespace SBaier.Datanet.Tests
 			_creationButton.Button.onClick.Invoke();
 			yield return null;
 			Assert.AreEqual(2, _dataNetContainer.Count);
-			Assert.IsNotNull(_dataNetContainer.DataNetsCopy.Where(n => n.Name.Equals(_netName)));
+			Assert.IsNotNull(_dataNetContainer.Copy().Values.Where(n => n.Name.Equals(_netName)));
 			Assert.AreEqual(string.Empty, _creationData.Name);
 			Assert.AreEqual(string.Empty, _creationData.Error);
 			yield return null;

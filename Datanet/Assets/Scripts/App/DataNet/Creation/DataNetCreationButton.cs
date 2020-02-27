@@ -15,16 +15,16 @@ namespace SBaier.Datanet
 		public Button Button { get { return _button; } }
 
 		private DataNetFactory _dataNetFactory;
-		private DataNetContainer _dataNetContainer;
+		private DataNetsRepository _dataNetContainer;
 		private DataNetCreationData _creationData;
 
 		[Inject]
 		public void Construct(DataNetFactory netFactory,
-			DataNetContainer dataNetContainer,
+			DataNetsRepository dataNetsRepository,
 			DataNetCreationData creationData)
 		{
 			_dataNetFactory = netFactory;
-			_dataNetContainer = dataNetContainer;
+			_dataNetContainer = dataNetsRepository;
 			_creationData = creationData;
 		}
 
@@ -56,7 +56,7 @@ namespace SBaier.Datanet
 		{
 			DataNetFactory.Parameter parameter = new DataNetFactory.Parameter(_creationData.Name);
 			DataNet result = _dataNetFactory.Create(parameter);
-			_dataNetContainer.Add(result);
+			_dataNetContainer.Add(result.ID, result);
 		}
 	}
 }

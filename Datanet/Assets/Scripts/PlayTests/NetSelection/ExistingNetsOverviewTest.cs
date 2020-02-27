@@ -1,11 +1,12 @@
 using Zenject;
 using System.Collections;
 using UnityEngine.TestTools;
-using SBaier.Testing;
-using UnityEngine;
 using NUnit.Framework;
 using SBaier.Datanet.Core;
 using SBaier.Testing.UI;
+using System;
+using System.Collections.Generic;
+using SBaier.Storage;
 
 namespace SBaier.Datanet.Tests
 {
@@ -26,7 +27,7 @@ namespace SBaier.Datanet.Tests
 			Container.Bind(typeof(ExistingNetOverviewInstaller), typeof(NetSelectionElementsCreator)).FromComponentInNewPrefabResource(ResourcePaths.ExistingNetsOverview).AsSingle().NonLazy();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
 			Container.Bind<SelectedDataNet>().AsSingle();
-			Container.Bind<DataNetContainer>().To<DataNetContainerImpl>().AsSingle();
+			Container.Bind(typeof(DataNetsRepository), typeof(ICollectionRepository<KeyValuePair<Guid, DataNet>>)).To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<PrefabFactory>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
 
@@ -48,7 +49,7 @@ namespace SBaier.Datanet.Tests
 		[Inject]
 		private DataNetFactory _netFactory = null;
 		[Inject]
-		private DataNetContainer _container = null;
+		private DataNetsRepository _container = null;
 		private DataNet _additionalNet = null;
 
 		[UnityTest]
@@ -70,8 +71,8 @@ namespace SBaier.Datanet.Tests
 
 			Assert.AreEqual(2, _elementsCreator.ElementsCopy.Count);
 			Assert.AreEqual(2, _elementsCreator.Hook.GetComponentsInChildren<NetSelectionElementInstaller>().Length);
-			foreach(DataNet net in _container.DataNetsCopy)
-				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(net.ID));
+			foreach(DataNet net in _container.Copy().Values)
+				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(new KeyValuePair<Guid, DataNet>(net.ID, net)));
 			yield return 0;
 		}
 
@@ -84,8 +85,8 @@ namespace SBaier.Datanet.Tests
 			_container.Add(_additionalNet);
 			yield return 0;
 			Assert.AreEqual(3, _elementsCreator.Hook.GetComponentsInChildren<NetSelectionElementInstaller>().Length);
-			foreach (DataNet net in _container.DataNetsCopy)
-				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(net.ID));
+			foreach (DataNet net in _container.Copy().Values)
+				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(new KeyValuePair<Guid, DataNet>(net.ID, net)));
 			yield return 0;
 		}
 	}

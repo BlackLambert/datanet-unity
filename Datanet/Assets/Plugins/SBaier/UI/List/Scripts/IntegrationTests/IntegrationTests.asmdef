@@ -1,0 +1,25 @@
+{
+    "name": "SBaier.UI.List.IntegrationTests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Zenject",
+        "Zenject-TestFramework",
+        "SBaier.Storage",
+        "SBaier.UI.List",
+        "SBaier.General"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
