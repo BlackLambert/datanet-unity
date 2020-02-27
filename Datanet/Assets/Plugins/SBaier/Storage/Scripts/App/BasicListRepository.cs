@@ -17,8 +17,7 @@ namespace SBaier.Storage
 
 		public BasicListRepository()
 		{
-			_datas = new List<TData>();
-			Store(_datas);
+			Store(new List<TData>());
 		}
 
 

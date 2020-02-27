@@ -7,12 +7,18 @@ namespace SBaier.Storage
 {
 	public class BasicDictionaryRepository<TKey, TContent> : IDictionaryRepository<TKey, TContent>
 	{
-		private Dictionary<TKey, TContent> _dictionary = null;
+		private Dictionary<TKey, TContent> _dictionary;
 		public event CollectionContentChangedAction<KeyValuePair<TKey, TContent>> OnCollectionContentAdded;
 		public event CollectionContentChangedAction<KeyValuePair<TKey, TContent>> OnCollectionContentRemoved;
 		public event RepositoryDataChangedAction<ICollection<KeyValuePair<TKey, TContent>>> OnRepositoryDataChanged;
 
 		public int Count { get { return _dictionary.Count; } }
+
+
+		public BasicDictionaryRepository()
+		{
+			Store(new List<KeyValuePair<TKey, TContent>>());
+		}
 
 
 		public void Add(TKey key, TContent value)
