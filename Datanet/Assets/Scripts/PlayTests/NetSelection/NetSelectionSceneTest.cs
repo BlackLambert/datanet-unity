@@ -21,8 +21,7 @@ namespace SBaier.Datanet.Tests
 		public IEnumerator Install()
 		{
 			//Setup scene
-			yield return LoadScene(SceneNames.MainScene);
-			yield return LoadScene(SceneNames.NetSelection);
+			yield return LoadScenes(SceneNames.MainScene, SceneNames.NetSelection);
 
 			//Init Objects
 		}

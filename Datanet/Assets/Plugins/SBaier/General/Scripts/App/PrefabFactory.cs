@@ -41,7 +41,7 @@ namespace SBaier
 			validateInput(prefab, parameters, container);
 			DiContainer subContainer = container.CreateSubContainer();
 			foreach (Parameter parameter in parameters)
-				subContainer.Bind(parameter.Type).To(parameter.Target.GetType()).FromInstance(parameter.Target).AsSingle();
+				subContainer.Bind(parameter.Type).To(parameter.Type).FromInstance(parameter.Target).AsSingle();
 			if(prefab is UnityEngine.Component)
 				return subContainer.InstantiatePrefabForComponent<TResult>(prefab);
 			return subContainer.InstantiatePrefab(prefab) as TResult;

@@ -7,44 +7,24 @@ using Zenject;
 
 namespace SBaier.Datanet
 {
-	public class ShowNodeTemplateSelectionButton : MonoBehaviour
+	public class ShowNodeTemplateSelectionButton : ShowPopupButton
 	{
-		private PopupFactory _popupFactory;
 		private PopupResourcePaths _popupResourcePaths;
 
-		[SerializeField]
-		private Button _button = null;
-		public Button Button { get { return _button; } }
+		protected override PopupInstaller PopupPrefab => 
+			(Resources.Load(_popupResourcePaths.PopupBase) as GameObject).GetComponent<PopupInstaller>();
+
+		protected override PopupStructure StructurePrefab =>
+			(Resources.Load(_popupResourcePaths.ClosablePopupStructure) as GameObject).GetComponent<PopupStructure>();
+
+		protected override PopupContent ContentPrefab =>
+			(Resources.Load(ResourcePaths.NodeTemplateSelectionPopupContent) as GameObject).GetComponent<PopupContent>();
 
 		[Inject]
-		private void Construct(PopupFactory popupFactory,
+		private void Construct(
 			PopupResourcePaths popupResourcePaths)
 		{
-			_popupFactory = popupFactory;
 			_popupResourcePaths = popupResourcePaths;
-		}
-
-		protected virtual void Start()
-		{
-			_button.onClick.AddListener(onClick);
-		}
-
-		protected virtual void OnDestroy()
-		{
-			_button.onClick.RemoveListener(onClick);
-		}
-
-		private void onClick()
-		{
-			createPopup();
-		}
-
-		private void createPopup()
-		{
-			PopupInstaller popupBasePrefab = (Resources.Load(_popupResourcePaths.PopupBase) as GameObject).GetComponent<PopupInstaller>();
-			PopupStructure popupStructure = (Resources.Load(_popupResourcePaths.ClosablePopupStructure) as GameObject).GetComponent<PopupStructure>();
-			PopupContent popupContent = (Resources.Load(ResourcePaths.NodeTemplateSelectionPopupContent) as GameObject).GetComponent<PopupContent>();
-			_popupFactory.Create(new PopupCreationData(popupBasePrefab, popupStructure, popupContent));
 		}
 	}
 }

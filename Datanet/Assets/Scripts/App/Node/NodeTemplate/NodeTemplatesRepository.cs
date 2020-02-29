@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using SBaier.Storage;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SBaier.Datanet
+namespace SBaier.Datanet.Core
 {
-	public class NodeTemplatesRepository
+	public interface NodeTemplatesRepository : IDictionaryRepository<Guid, NodeTemplate>
 	{
 		
 	}

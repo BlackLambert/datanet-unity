@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5959990571405275586}
   - component: {fileID: 8004192675788321808}
   m_Layer: 5
-  m_Name: DefaultTestCanvas
+  m_Name: HightMatchingTestCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
