@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace SBaier.Datanet.Core
 {
+	[Serializable]
 	public class NodeTemplate
 	{
 		public Guid ID
@@ -19,15 +20,16 @@ namespace SBaier.Datanet.Core
 			private set;
 		}
 
-		private HashSet<NodeComponentTemplate> _componentTemplates;
+		private List<Guid> _componentTemplates;
+		public List<Guid> ComponentTemplatesCopy { get { return new List<Guid>( _componentTemplates); } }
 
 
 		public NodeTemplate(Guid iD, 
-			string name, IEnumerable<NodeComponentTemplate> componentTemplates)
+			string name, List<Guid> componentTemplates)
 		{
 			ID = iD;
 			Name = name;
-			_componentTemplates = new HashSet<NodeComponentTemplate>(componentTemplates);
+			_componentTemplates = new List<Guid>(componentTemplates);
 		}
 	}
 }

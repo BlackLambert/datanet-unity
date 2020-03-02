@@ -8,8 +8,8 @@ namespace SBaier.Tests
 	[TestFixture]
 	public class PrefabFactoryTest : ZenjectUnitTestFixture
 	{
-		private const string _testObjectPrefabPath = "Prefabs/TestObject";
-		private const string _simpleTestObjectPrefabPath = "Prefabs/SimpleTestObject";
+		private const string _testObjectPrefabPath = "Prefabs/Tests/PrefabFactoryTestObject";
+		private const string _simpleTestObjectPrefabPath = "Prefabs/Tests/SimpleTestObject";
 		private const int _injectedNumber = 23;
 
 		[SetUp]
@@ -19,7 +19,7 @@ namespace SBaier.Tests
 			_injectable = new TestInjectable();
 			_boundInjectable = new TestInjectable();
 			Container.Bind<TestInjectable>().FromInstance(_boundInjectable).AsSingle();
-			Container.Bind<TestObject>().FromResource(_testObjectPrefabPath).AsTransient();
+			Container.Bind<PrefabFactoryTestObject>().FromResource(_testObjectPrefabPath).AsTransient();
 			Container.Bind<GameObject>().FromResource(_simpleTestObjectPrefabPath).AsTransient();
 
 			Container.Inject(this);
@@ -28,7 +28,7 @@ namespace SBaier.Tests
 		private TestInjectable _injectable;
 		private TestInjectable _boundInjectable;
 		[Inject]
-		private TestObject _testObjectPrefab = null;
+		private PrefabFactoryTestObject _testObjectPrefab = null;
 		[Inject]
 		private GameObject _simpleTestObjectPrefab = null;
 		[Inject]
@@ -50,7 +50,7 @@ namespace SBaier.Tests
 				new PrefabFactory.Parameter(_injectable, typeof(TestInjectable)),
 				new PrefabFactory.Parameter(_injectedNumber, typeof(int))
 			};
-			TestObject result = _prefabFactory.Create(_testObjectPrefab, parameters);
+			PrefabFactoryTestObject result = _prefabFactory.Create(_testObjectPrefab, parameters);
 			Assert.IsNotNull(result);
 			Assert.AreEqual(_injectedNumber, result.Number);
 			Assert.AreEqual(_injectable, result.Injectable);
@@ -74,7 +74,7 @@ namespace SBaier.Tests
 			{
 				new PrefabFactory.Parameter(_injectedNumber, typeof(int))
 			};
-			TestObject result = _prefabFactory.Create(_testObjectPrefab, parameters, Container);
+			PrefabFactoryTestObject result = _prefabFactory.Create(_testObjectPrefab, parameters, Container);
 			Assert.AreEqual(_injectedNumber, result.Number);
 			Assert.AreEqual(_boundInjectable, result.Injectable);
 		}

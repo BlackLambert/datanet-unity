@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeCreationData : MonoBehaviour
+namespace SBaier.Datanet
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public class NodeCreationData 
+	{
+		
+	}
 }

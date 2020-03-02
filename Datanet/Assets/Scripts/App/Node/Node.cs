@@ -11,18 +11,11 @@ namespace SBaier.Datanet.Core
 			get;
 		}
 
-		public Guid TemplateID
-		{
-			private set;
-			get;
-		}
-
 		private HashSet<NodeComponent> _components;
 
 		public Node(Guid iD, Guid templateID)
 		{
 			ID = iD;
-			TemplateID = templateID;
 			_components = new HashSet<NodeComponent>();
 		}
 
@@ -36,9 +29,9 @@ namespace SBaier.Datanet.Core
 			_components.Remove(value);
 		}
 
-		public IEnumerable<NodeComponent> GetComponentsCopy()
+		public HashSet<NodeComponent> GetComponentsCopy()
 		{
-			return new List<NodeComponent>(_components);
+			return new HashSet<NodeComponent>(_components);
 		}
 	}
 }

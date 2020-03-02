@@ -30,17 +30,15 @@ namespace SBaier.UI.List.Tests
 		}
 
 		[Inject]
-		private TestData _firstData;
+		private TestData _firstData = null;
 		[Inject]
-		private TestData _secondData;
+		private TestData _secondData = null;
 		[Inject]
-		private TestElementsCreator _creator;
+		private TestElementsCreator _creator = null;
 		[Inject]
-		private TestElement _testElement;
+		private UITestCanvas _canvas = null;
 		[Inject]
-		private UITestCanvas _canvas;
-		[Inject]
-		private IListRepository<TestData> _repository;
+		private IListRepository<TestData> _repository = null;
 
 
 		[UnityTest]

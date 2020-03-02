@@ -1,0 +1,42 @@
+Fragment ---> FragmentTemplate (Text, DateTime, Long, Ref, Type, Floating,)
+
+^ n
+|
+| 1
+
+Component ---> ComponentTemplate
+
+^ n
+|
+| 1
+
+Node ---> NodeTemplate
+
+
+Erstellen einer Notizen Node
+
+Notizen-Node
+- Titel-Component
+	- ComponentType-Fragment: Guid ("Titel")
+	- Text-Fragment: "Neue Notiz", editierbar
+- NodeType-Component
+	- ComponentType-Fragment: Guid ("NodeType")
+	- NodeTypeRef-Fragment: Guid ("Notiz")
+- Txt-Content-Ref-Component
+	- ComponentType-Fragment: Guid ("ContentRef")
+	- ContentRef-Fragment: Guid (NeueNotiz.txt)
+- Schlagwörter-Componente
+	- ComponentType-Fragment: Guid ("Tags")
+	- Node-Ref-Liste-Fragment: Guid, Tag-Nodes (leer)
+
+Tag-Node
+- NodeType-Component
+	- ComponentType-Fragment: Guid ("NodeType")
+	- NodeTypeRef-Fragment: Guid ("Tag")
+- StringValue-Componente
+	- ComponentType-Fragment: Guid ("StringValue")
+	- Text-Fragment: "Neues Schlagwort", editierbar
+
+
+Anfragen:
+- Gib mir alle Tag-Nodes

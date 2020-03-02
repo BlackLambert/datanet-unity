@@ -3,7 +3,6 @@ using SBaier.Popup;
 using SBaier.Storage;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace SBaier.Datanet
@@ -20,7 +19,7 @@ namespace SBaier.Datanet
 			Container.Bind<PrefabFactory>().AsTransient();
 			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
 			NodeTemplatesRepositoryImpl rep = new NodeTemplatesRepositoryImpl();
-			NodeTemplate template = new NodeTemplate(Guid.NewGuid(), "My Tempalte", new List<NodeComponentTemplate>());
+			NodeTemplate template = new NodeTemplate(Guid.NewGuid(), "My Tempalte", new List<Guid>());
 			rep.Add(template.ID, template);
 			Container.Bind(typeof(NodeTemplatesRepository), typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>)).
 				To<NodeTemplatesRepositoryImpl>().FromInstance(rep).AsSingle();

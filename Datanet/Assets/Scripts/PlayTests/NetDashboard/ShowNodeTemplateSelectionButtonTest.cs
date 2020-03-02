@@ -6,6 +6,9 @@ using SBaier.Datanet.Core;
 using NUnit.Framework;
 using UnityEngine;
 using SBaier.Popup;
+using System.Collections.Generic;
+using System;
+using SBaier.Storage;
 
 namespace SBaier.Datanet.Tests
 {
@@ -20,6 +23,7 @@ namespace SBaier.Datanet.Tests
 			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsSingle();
 			Container.Bind<PrefabFactory>().AsSingle();
 			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
+			Container.Bind(typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>), typeof(NodeTemplatesRepository)).To<NodeTemplatesRepositoryImpl>().AsSingle();
 			Container.Bind(typeof(ShowNodeTemplateSelectionButton)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_NodeTemplateSelectionButton).AsSingle().NonLazy();
 			PostInstall();
 
