@@ -1,7 +1,7 @@
 using Zenject;
 using NUnit.Framework;
 
-namespace SBaier.Popup.Tests
+namespace SBaier.UI.Popup.Tests
 {
 	[TestFixture]
 	public class PopupCreationDataUnitTest : ZenjectUnitTestFixture

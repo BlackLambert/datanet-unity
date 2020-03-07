@@ -1,6 +1,6 @@
 ﻿
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public abstract class PopupResourcePaths
 	{

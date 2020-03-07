@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public abstract class ShowPopupButton : MonoBehaviour
 	{
 		private PopupFactory _popupFactory;
+		private PopupViewDisplayer _popupDisplayer;
 
 		protected abstract PopupInstaller PopupPrefab { get; }
 		protected abstract PopupStructure StructurePrefab { get; }
@@ -19,9 +18,11 @@ namespace SBaier.Popup
 		public Button Button { get { return _button; } }
 
 		[Inject]
-		private void Construct(PopupFactory popupFactory)
+		private void Construct(PopupFactory popupFactory,
+			PopupViewDisplayer popupDisplayer)
 		{
 			_popupFactory = popupFactory;
+			_popupDisplayer = popupDisplayer; 
 		}
 
 		protected virtual void Start()
@@ -46,7 +47,8 @@ namespace SBaier.Popup
 
 		private void createPopup()
 		{
-			_popupFactory.Create(createCreationData());
+			PopupInstaller popup = _popupFactory.Create(createCreationData());
+			_popupDisplayer.Display(popup.Popup);
 		}
 	}
 }

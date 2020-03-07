@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public class PopupContentCreator : MonoBehaviour
 	{

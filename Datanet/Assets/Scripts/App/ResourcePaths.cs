@@ -14,6 +14,7 @@ namespace SBaier.Datanet
 		public const string NetDashboard = "Prefabs/NetWorkspace/Dashboard/BackToNetSelectionButton";
 		public const string NetDashboard_NetNameDisplay = "Prefabs/NetWorkspace/Dashboard/NetNameDisplay";
 		public const string NetDashboard_NodeCountDisplay = "Prefabs/NetWorkspace/Dashboard/NodeCountDisplay";
+		public const string NetDashboard_NetDashboard = "Prefabs/NetWorkspace/Dashboard/NetDashboard";
 
 		public const string NetDashboard_NodeTemplateSelectionButton = "Prefabs/NetWorkspace/NodeCreation/ShowNodeTemplateSelectionButton";
 		public const string NodeTemplateSelectionPopupContent = "Prefabs/NetWorkspace/NodeCreation/NodeTemplateSelectionPopupContent";

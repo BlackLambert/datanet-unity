@@ -13,6 +13,8 @@ namespace SBaier.Datanet
 		{
 			Container.Bind(typeof(DataNetsRepository), typeof(ICollectionRepository<KeyValuePair<Guid, DataNet>>)).
 				To<DataNetsRepositoryImpl>().AsSingle();
+			Container.Bind(typeof(NodesRepository), typeof(ICollectionRepository<KeyValuePair<Guid, Node>>)).
+				To<NodesRepositoryImp>().AsSingle();
 			Container.Bind<SelectedDataNet>().To<SelectedDataNet>().AsSingle();
 		}
 	}

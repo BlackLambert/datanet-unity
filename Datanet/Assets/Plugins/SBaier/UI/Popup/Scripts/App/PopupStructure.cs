@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public class PopupStructure : MonoBehaviour
 	{

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public class PopupStructureCreator : MonoBehaviour
 	{

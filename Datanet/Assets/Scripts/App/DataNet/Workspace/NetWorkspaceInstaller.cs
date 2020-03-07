@@ -1,9 +1,10 @@
 using SBaier.Datanet.Core;
-using SBaier.Popup;
+using SBaier.UI.Popup;
 using SBaier.Storage;
 using System;
 using System.Collections.Generic;
 using Zenject;
+using SBaier.UI.Page;
 
 namespace SBaier.Datanet
 {
@@ -18,11 +19,12 @@ namespace SBaier.Datanet
 			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsTransient();
 			Container.Bind<PrefabFactory>().AsTransient();
 			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
-			NodeTemplatesRepositoryImpl rep = new NodeTemplatesRepositoryImpl();
-			NodeTemplate template = new NodeTemplate(Guid.NewGuid(), "My Tempalte", new List<Guid>());
-			rep.Add(template.ID, template);
-			Container.Bind(typeof(NodeTemplatesRepository), typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>)).
-				To<NodeTemplatesRepositoryImpl>().FromInstance(rep).AsSingle();
+			Container.Bind<PopupViewDisplayer>().To<DataNetPopupViewDisplayer>().AsSingle();
+			Container.Bind(typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>),
+				typeof(NodeTemplatesRepository)).To<NodeTemplatesRepositoryImpl>().AsSingle();
+			Container.Bind(typeof(PageViewDisplayer)).To<WorkspacePageViewDisplayer>().AsSingle();
+			Container.Bind<OnStartPageLoader>().FromNewComponentOnNewGameObject().AsSingle().
+				WithArguments(ResourcePaths.NetDashboard_NetDashboard).NonLazy();
 		}
 	}
 }

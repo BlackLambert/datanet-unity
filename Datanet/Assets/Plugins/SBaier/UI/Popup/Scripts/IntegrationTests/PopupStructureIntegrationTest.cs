@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using SBaier.Testing.UI;
 
-namespace SBaier.Popup.Tests
+namespace SBaier.UI.Popup.Tests
 {
 	public class PopupStructureIntegrationTest : UIIntegrationTestFixture
 	{

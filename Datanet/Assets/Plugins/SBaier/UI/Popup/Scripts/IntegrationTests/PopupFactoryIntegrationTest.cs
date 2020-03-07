@@ -5,7 +5,7 @@ using System;
 using UnityEngine.TestTools;
 using System.Collections;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	[TestFixture]
 	public class PopupFactoryIntegrationTest : ZenjectIntegrationTestFixture

@@ -1,18 +1,13 @@
 ﻿
 
 using System;
+using System.Collections.Generic;
 
 namespace SBaier.Datanet.Core
 {
 	public class DataNet
 	{
 		public Guid ID
-		{
-			get;
-			private set;
-		}
-
-		public NodeContainer NodeContainer
 		{
 			get;
 			private set;
@@ -30,14 +25,31 @@ namespace SBaier.Datanet.Core
 		}
 		public event Action OnNameChanged;
 
+		private HashSet<Guid> _nodeIds;
+
 
 		public DataNet(Guid iD, 
-			NodeContainer nodeContainer,
 			string name)
 		{
 			ID = iD;
-			NodeContainer = nodeContainer;
 			Name = name;
+			_nodeIds = new HashSet<Guid>();
+		}
+
+		public void AddNode(Node value)
+		{
+			_nodeIds.Add(value.ID);
+		}
+
+		public void RemoveComponent(Guid iD)
+		{
+			_nodeIds.Remove(iD);
+		}
+
+
+		public HashSet<Guid> GetNodeIDsCopy()
+		{
+			return new HashSet<Guid>(_nodeIds);
 		}
 	}
 }

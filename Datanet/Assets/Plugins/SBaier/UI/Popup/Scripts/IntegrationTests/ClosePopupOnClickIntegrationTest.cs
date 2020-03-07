@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using System.Collections;
 
-namespace SBaier.Popup.Tests
+namespace SBaier.UI.Popup.Tests
 {
 	[TestFixture]
 	public class ClosePopupOnClickIntegrationTest : ZenjectIntegrationTestFixture

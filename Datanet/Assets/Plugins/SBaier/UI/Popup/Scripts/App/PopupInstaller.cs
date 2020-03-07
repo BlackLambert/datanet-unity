@@ -1,13 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-namespace SBaier.Popup
+namespace SBaier.UI.Popup
 {
 	public class PopupInstaller : MonoInstaller
 	{
 		[SerializeField]
 		private Transform _base = null;
 		public Transform Base { get{ return _base; }  }
+		[SerializeField]
+		private Popup _popup = null;
+		public Popup Popup { get { return _popup; } }
 
 		[InjectOptional]
 		private PopupStructure _popupStructurePrefab = null;
