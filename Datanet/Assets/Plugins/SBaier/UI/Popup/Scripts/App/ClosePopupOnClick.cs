@@ -38,8 +38,9 @@ namespace SBaier.UI.Popup
 
 		private void hidePopup()
 		{
-			_popupDisplayer.Hide(_popupInstaller.Popup);
+
 			_popupInstaller.Popup.OnHidden += destroyPopup;
+			_popupDisplayer.Hide(_popupInstaller.Popup);
 		}
 
 		private void destroyPopup()

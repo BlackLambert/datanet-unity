@@ -6,7 +6,7 @@ namespace SBaier.Datanet.Core
 	{
 		public override DataNet Create(Parameter parameter)
 		{
-			return new DataNet(parameter.ID, new NodeContainerDummy(), parameter.NetName);
+			return new DataNet(parameter.ID, parameter.NetName);
 		}
 	}
 }

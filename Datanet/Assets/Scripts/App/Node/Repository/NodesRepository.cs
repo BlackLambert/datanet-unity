@@ -6,6 +6,6 @@ namespace SBaier.Datanet.Core
 {
 	public interface NodesRepository : IDictionaryRepository<Guid, Node>
 	{
-		public void Add(Node node);
+		void Add(Node node);
 	}
 }

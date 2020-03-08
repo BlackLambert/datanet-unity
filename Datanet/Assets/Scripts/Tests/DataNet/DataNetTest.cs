@@ -17,16 +17,12 @@ namespace SBaier.Datanet.Tests
 		{
 			Guid guid = Guid.NewGuid();
 			Container.Bind<Guid>().FromInstance(guid).AsTransient();
-			NodeContainerDummy nodeContainer = new NodeContainerDummy();
-			Container.Bind<NodeContainer>().To<NodeContainerDummy>().FromInstance(nodeContainer).AsTransient();
-			Container.Bind<DataNet>().FromInstance(new DataNet(guid, nodeContainer, _netName)).AsTransient();
+			Container.Bind<DataNet>().FromInstance(new DataNet(guid, _netName)).AsTransient();
 			Container.Inject(this);
 		}
 
 		[Inject]
 		private Guid _netGuid = Guid.Empty;
-		[Inject]
-		private NodeContainer _nodeContainer = null;
 		[Inject]
 		private DataNet _netToTest = null;
 
@@ -35,7 +31,6 @@ namespace SBaier.Datanet.Tests
         {
 			Assert.AreEqual(_netName, _netToTest.Name);
 			Assert.AreEqual(_netGuid, _netToTest.ID);
-			Assert.AreEqual(_nodeContainer, _netToTest.NodeContainer);
 		}
 
 		[Test]

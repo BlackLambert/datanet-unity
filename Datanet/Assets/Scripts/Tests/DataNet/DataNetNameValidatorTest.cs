@@ -19,7 +19,7 @@ namespace SBaier.Datanet.Tests
 		public void Install()
 		{
 			List<DataNet> existingNets = new List<DataNet>();
-			existingNets.Add(new DataNet(Guid.NewGuid(), new NodeContainerDummy(), _existingNetName));
+			existingNets.Add(new DataNet(Guid.NewGuid(), _existingNetName));
 
 			Container.Bind<List<DataNet>>().FromInstance(existingNets).AsTransient();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsTransient();

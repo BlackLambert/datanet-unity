@@ -20,8 +20,7 @@ namespace SBaier.Datanet.Core
 		public override DataNet Create(Parameter parameter)
 		{
 			_nameValidator.Validate(parameter.NetName, _dataNetsRepository.Copy().Values);
-			NodeContainer nodeContainer = new NodeContainerImpl();
-			return new DataNet(parameter.ID, nodeContainer, parameter.NetName);
+			return new DataNet(parameter.ID, parameter.NetName);
 		}
 	}
 }

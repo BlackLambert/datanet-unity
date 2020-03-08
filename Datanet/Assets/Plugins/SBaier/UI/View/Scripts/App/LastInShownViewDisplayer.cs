@@ -13,6 +13,8 @@ namespace SBaier.UI
 		{
 			if(_views.Contains(view))
 				throw new ArgumentException($"The view is already managed by this {nameof(LastInShownViewDisplayer<TView>)}");
+			if (view == null)
+				throw new ArgumentNullException("The provided view is null");
 			hideCurrentlyDisplayedView();
 			_views.Add(view);
 			showLastAddedView();
@@ -22,6 +24,8 @@ namespace SBaier.UI
 		{
 			if (!_views.Contains(view))
 				throw new ArgumentException($"The view is not managed by this {nameof(LastInShownViewDisplayer<TView>)}");
+			if (view == null)
+				throw new ArgumentNullException("The provided view is null");
 			if (_views[_views.Count - 1] == view)
 			{
 				Hide();

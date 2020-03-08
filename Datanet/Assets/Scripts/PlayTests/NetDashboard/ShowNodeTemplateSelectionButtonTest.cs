@@ -23,6 +23,7 @@ namespace SBaier.Datanet.Tests
 			Container.Bind<PopupFactory>().To<PopupFactoryImpl>().AsSingle();
 			Container.Bind<PrefabFactory>().AsSingle();
 			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
+			Container.Bind<PopupViewDisplayer>().To<DataNetPopupViewDisplayer>().AsSingle();
 			Container.Bind(typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>), typeof(NodeTemplatesRepository)).To<NodeTemplatesRepositoryImpl>().AsSingle();
 			Container.Bind(typeof(ShowNodeTemplateSelectionButton)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_NodeTemplateSelectionButton).AsSingle().NonLazy();
 			PostInstall();

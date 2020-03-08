@@ -14,13 +14,18 @@ namespace SBaier.UI.Popup.Tests
 		{
 			PreInstall();
 			Container.Bind(typeof(PopupInstaller), typeof(ClosePopupOnClick)).FromComponentInNewPrefabResource(_prefabPath).AsSingle();
+			Container.Bind(typeof(PopupViewDisplayer)).To<TestPopupViewDisplayer>().AsSingle();
 			Container.Inject(this);
 			PostInstall();
+
+			_popupViewDisplayer.Display(_popup.Popup);
 		}
 
 
 		[Inject]
 		private PopupInstaller _popup = null;
+		[Inject]
+		private PopupViewDisplayer _popupViewDisplayer = null;
 		[Inject]
 		private ClosePopupOnClick _closeOnClick = null;
 
@@ -32,8 +37,8 @@ namespace SBaier.UI.Popup.Tests
 
 			Assert.IsNotNull(_popup);
 			_closeOnClick.Button.onClick.Invoke();
-			yield return 0;
-			Assert.True(_popup == null);
+			yield return 2;
+			Assert.IsTrue(_popup == null);
 		}
 	}
 }
