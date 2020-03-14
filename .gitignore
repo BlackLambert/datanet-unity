@@ -2,8 +2,6 @@ Datanet/Library
 Datanet/Temp
 Datanet/.vs
 Datanet/Assembly-CSharp.csproj
-Datanet/Assets/Plugins.meta
-Datanet/Assets/Plugins/
 Datanet/Assets/TextMesh Pro/
 Datanet/Assets/TextMesh Pro.meta
 *.csproj
