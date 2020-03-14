@@ -26,6 +26,10 @@ namespace SBaier.Datanet.Core
 		public event Action OnNameChanged;
 
 		private HashSet<Guid> _nodeIds;
+		public Action<Guid> OnNodeIDAdded;
+		public Action<Guid> OnNodeIDRemoved;
+
+		public int Count { get { return _nodeIds.Count; } }
 
 
 		public DataNet(Guid iD, 
@@ -39,11 +43,13 @@ namespace SBaier.Datanet.Core
 		public void AddNode(Node value)
 		{
 			_nodeIds.Add(value.ID);
+			OnNodeIDAdded?.Invoke(value.ID);
 		}
 
-		public void RemoveComponent(Guid iD)
+		public void RemoveNode(Guid iD)
 		{
 			_nodeIds.Remove(iD);
+			OnNodeIDRemoved?.Invoke(iD);
 		}
 
 

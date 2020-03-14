@@ -36,7 +36,7 @@ namespace SBaier.Datanet.Tests
 			DataNet result = _factory.Create(_inputParameters);
 			Assert.AreEqual(_inputParameters.ID, result.ID);
 			Assert.AreEqual(_inputParameters.NetName, result.Name);
-			Assert.AreEqual(result.NodeContainer.Count, 0);
+			Assert.AreEqual(result.Count, 0);
 		}
 	}
 }

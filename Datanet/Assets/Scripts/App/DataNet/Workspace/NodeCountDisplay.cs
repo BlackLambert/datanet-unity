@@ -1,7 +1,5 @@
 ﻿using SBaier.Datanet.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -25,17 +23,17 @@ namespace SBaier.Datanet
 		protected virtual void Start()
 		{
 			updateCounterText();
-			_dataNet.NodeContainer.OnNodeAdded += onNodesCountChanged;
-			_dataNet.NodeContainer.OnNodeRemoved += onNodesCountChanged;
+			_dataNet.OnNodeIDAdded += onNodesCountChanged;
+			_dataNet.OnNodeIDRemoved += onNodesCountChanged;
 		}
 
 		protected virtual void OnDestroy()
 		{
-			_dataNet.NodeContainer.OnNodeAdded -= onNodesCountChanged;
-			_dataNet.NodeContainer.OnNodeRemoved -= onNodesCountChanged;
+			_dataNet.OnNodeIDAdded -= onNodesCountChanged;
+			_dataNet.OnNodeIDRemoved -= onNodesCountChanged;
 		}
 
-		private void onNodesCountChanged(Node _)
+		private void onNodesCountChanged(Guid _)
 		{
 			updateCounterText();
 		}
@@ -47,7 +45,7 @@ namespace SBaier.Datanet
 				_counterText.text = 0.ToString();
 				return;
 			}
-			_counterText.text = _dataNet.NodeContainer.Count.ToString();
+			_counterText.text = _dataNet.Count.ToString();
 		}
 	}
 }

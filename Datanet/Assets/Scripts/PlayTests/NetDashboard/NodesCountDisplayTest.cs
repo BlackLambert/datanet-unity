@@ -56,8 +56,8 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return 0;
 
-			_selectedNet.NodeContainer.AddNode(_firstNode);
-			_selectedNet.NodeContainer.AddNode(_secondNode);
+			_selectedNet.AddNode(_firstNode);
+			_selectedNet.AddNode(_secondNode);
 			yield return 0;
 			Assert.AreEqual(2.ToString(), _nodeCountDisplay.CounterText.text);
 		}
@@ -68,10 +68,10 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return 0;
 
-			_selectedNet.NodeContainer.AddNode(_firstNode);
+			_selectedNet.AddNode(_firstNode);
 			yield return 0;
 			Assert.AreEqual(1.ToString(), _nodeCountDisplay.CounterText.text);
-			_selectedNet.NodeContainer.AddNode(_secondNode);
+			_selectedNet.AddNode(_secondNode);
 			yield return 0;
 			Assert.AreEqual(2.ToString(), _nodeCountDisplay.CounterText.text);
 		}
@@ -82,11 +82,11 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return 0;
 
-			_selectedNet.NodeContainer.AddNode(_firstNode);
-			_selectedNet.NodeContainer.AddNode(_secondNode);
+			_selectedNet.AddNode(_firstNode);
+			_selectedNet.AddNode(_secondNode);
 			yield return 0;
 			Assert.AreEqual(2.ToString(), _nodeCountDisplay.CounterText.text);
-			_selectedNet.NodeContainer.RemoveNode(_secondNode.ID);
+			_selectedNet.RemoveNode(_secondNode.ID);
 			yield return 0;
 			Assert.AreEqual(1.ToString(), _nodeCountDisplay.CounterText.text);
 		}

@@ -223,6 +223,8 @@ GameObject:
   - component: {fileID: 4880346556991664893}
   - component: {fileID: 8684202709917825816}
   - component: {fileID: 162781338541065324}
+  - component: {fileID: 6499374754981767291}
+  - component: {fileID: 5583024458372861912}
   m_Layer: 5
   m_Name: ClosableTestPopup
   m_TagString: Untagged
@@ -341,3 +343,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 8963329518855359007}
+  _popup: {fileID: 6499374754981767291}
+--- !u!114 &6499374754981767291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921345579758758346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42791fdea698fc469a086230c7e4706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5583024458372861912}
+--- !u!114 &5583024458372861912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921345579758758346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08c9db2e76a1404eb13a049c7160d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hideOnAwake: 1
+  _base: {fileID: 5921345579758758346}

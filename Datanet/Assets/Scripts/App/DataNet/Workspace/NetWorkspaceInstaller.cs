@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Zenject;
 using SBaier.UI.Page;
+using UnityEngine;
 
 namespace SBaier.Datanet
 {
@@ -25,6 +26,9 @@ namespace SBaier.Datanet
 			Container.Bind(typeof(PageViewDisplayer)).To<WorkspacePageViewDisplayer>().AsSingle();
 			Container.Bind<OnStartPageLoader>().FromNewComponentOnNewGameObject().AsSingle().
 				WithArguments(ResourcePaths.NetDashboard_NetDashboard).NonLazy();
+			Page editorPage = Resources.Load<GameObject>(ResourcePaths.NodeEditorPage).GetComponentInChildren<Page>();
+			Container.Bind<NodeEditorLoader>().AsTransient().WithArguments(editorPage);
+			Container.Bind<NodeFactory>().To<NodeFactoryImpl>().AsTransient();
 		}
 	}
 }
