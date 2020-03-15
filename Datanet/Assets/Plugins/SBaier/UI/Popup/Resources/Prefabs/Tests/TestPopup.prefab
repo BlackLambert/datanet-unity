@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8588297127549280374}
+  _hideOnAwake: 0
 --- !u!114 &8588297127549280374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,5 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08c9db2e76a1404eb13a049c7160d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideOnAwake: 1
   _base: {fileID: 6693894499088145245}

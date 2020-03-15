@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8754154668153058652}
+  _hideOnAwake: 1
 --- !u!114 &8754154668153058652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08c9db2e76a1404eb13a049c7160d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideOnAwake: 1
   _base: {fileID: 8323442648955401734}
 --- !u!222 &5179004314365198843
 CanvasRenderer:

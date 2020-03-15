@@ -13,8 +13,7 @@ namespace SBaier.UI
 
 		public event Action OnHidden;
 
-		[Inject]
-		private void Construct()
+		protected virtual void Awake()
 		{
 			if (_hideOnAwake)
 				_animator.HideImmediatly();

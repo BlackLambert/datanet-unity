@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1077091127344462810}
+  _hideOnAwake: 1
 --- !u!114 &1077091127344462810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,11 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4b44724e4730d4a969e8783afe97aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideOnAwake: 1
   _canvasGroup: {fileID: 190954440839469782}
   _base: {fileID: 3048825975496486415}
-  _fadeInDuration: 0.33
-  _fadeOutDuration: 0.25
+  _fadeInDuration: 0.1
+  _fadeOutDuration: 0.1
 --- !u!225 &190954440839469782
 CanvasGroup:
   m_ObjectHideFlags: 0

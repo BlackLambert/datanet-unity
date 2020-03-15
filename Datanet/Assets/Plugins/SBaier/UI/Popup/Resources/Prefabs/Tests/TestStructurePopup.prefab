@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8037910540973676225}
   - component: {fileID: 1534119530106055093}
   - component: {fileID: 3537302727917620884}
+  - component: {fileID: -8207164195540913023}
+  - component: {fileID: -4340291843299082732}
   m_Layer: 5
   m_Name: TestStructurePopup
   m_TagString: Untagged
@@ -132,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 7740629906205042630}
+  _popup: {fileID: -8207164195540913023}
 --- !u!114 &3537302727917620884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +148,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hook: {fileID: 7740629906205042630}
+--- !u!114 &-8207164195540913023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982319537545397267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42791fdea698fc469a086230c7e4706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: -4340291843299082732}
+  _hideOnAwake: 0
+--- !u!114 &-4340291843299082732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982319537545397267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08c9db2e76a1404eb13a049c7160d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _base: {fileID: 4982319537545397267}

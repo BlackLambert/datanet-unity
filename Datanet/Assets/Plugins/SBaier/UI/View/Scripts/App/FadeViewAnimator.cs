@@ -9,12 +9,16 @@ namespace SBaier.UI
 	{
 		[SerializeField]
 		private CanvasGroup _canvasGroup = null;
+		public CanvasGroup CanvasGroup { get { return _canvasGroup; } }
 		[SerializeField]
 		private Transform _base = null;
+		public Transform Base { get { return _base; } }
 		[SerializeField]
 		private float _fadeInDuration = 0.33f;
+		public float FadeInDuration { get { return _fadeInDuration; } }
 		[SerializeField]
 		private float _fadeOutDuration = 0.25f;
+		public float FadeOutDuration { get { return _fadeOutDuration; } }
 
 		private float _delta = 0;
 		private State _state = State.Idle;

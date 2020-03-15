@@ -1,11 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections;
-using UnityEngine;
 using UnityEngine.TestTools;
 using Zenject;
 
-namespace SBaier.UI
+namespace SBaier.UI.Test
 {
 	[TestFixture]
 	public class BasicViewAnimatorIntegrationTest : ZenjectIntegrationTestFixture
@@ -17,7 +16,6 @@ namespace SBaier.UI
 			PreInstall();
 			Container.Bind<PrefabFactory>().AsSingle();
 			Container.Bind(typeof(TestView), typeof(BasicViewAnimator)).FromComponentsInNewPrefabResource(_viewPath).AsSingle();
-			Container.Inject(this);
 			PostInstall();
 			
 		}
@@ -32,7 +30,7 @@ namespace SBaier.UI
 		public IEnumerator ViewHiddenOnStart()
 		{
 			Install();
-			yield return new WaitForSeconds(2);
+			yield return 0;
 
 			Assert.IsFalse(_animator.Base.activeInHierarchy);
 		}

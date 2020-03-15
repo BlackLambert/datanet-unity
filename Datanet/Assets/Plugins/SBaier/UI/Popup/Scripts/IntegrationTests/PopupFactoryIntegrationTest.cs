@@ -43,25 +43,32 @@ namespace SBaier.UI.Popup
 		[Inject(Id = _fullCreationDataID)]
 		private PopupCreationData _fullData = null;
 
-		[Test]
-		public void FailsOnMissingPopupPrefab()
+		[UnityTest]
+		public IEnumerator FailsOnMissingPopupPrefab()
 		{
 			Install();
+			yield return 0;
+
 			Assert.Throws<ArgumentNullException>(() => _popupFactory.Create(_emptyData));
 		}
 
-		[Test]
-		public void FailsOnCreationDataNull()
+		[UnityTest]
+		public IEnumerator FailsOnCreationDataNull()
 		{
 			Install();
+			yield return 0;
+
 			Assert.Throws<ArgumentNullException>(() => _popupFactory.Create(null));
 		}
 
-		[Test]
-		public void CreatesPopupWithPrefabOnlyCreationData()
+		[UnityTest]
+		public IEnumerator CreatesPopupWithPrefabOnlyCreationData()
 		{
 			Install();
+			yield return 0;
+
 			PopupInstaller installer = _popupFactory.Create(_prefabOnlyData);
+			yield return 0;
 			Assert.IsNotNull(installer);
 			Assert.IsNotNull(GameObject.FindObjectOfType<PopupInstaller>());
 			Assert.IsNull(installer.PopupContentPrefab);
@@ -75,6 +82,7 @@ namespace SBaier.UI.Popup
 			yield return 0;
 
 			PopupInstaller installer = _popupFactory.Create(_fullData);
+			yield return 0;
 			Assert.IsNotNull(installer);
 			Assert.IsNotNull(GameObject.FindObjectOfType<PopupInstaller>());
 			Assert.IsNotNull(installer.PopupContentPrefab);
