@@ -337,5 +337,5 @@ MonoBehaviour:
   _hideOnAwake: 1
   _canvasGroup: {fileID: 296685896316328728}
   _base: {fileID: 1886322599500904230}
-  _fadeInDuration: 0.25
-  _fadeOutDuration: 0.2
+  _fadeInDuration: 0.33
+  _fadeOutDuration: 0.25

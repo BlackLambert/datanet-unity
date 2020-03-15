@@ -21,19 +21,6 @@ namespace SBaier.UI
 
 		public override event Action OnHidden;
 
-		[Inject]
-		private void Construct()
-		{
-			init();
-		}
-
-
-		private void init()
-		{
-			_canvasGroup.alpha = _hideOnAwake ? 0 : 1;
-			_canvasGroup.interactable = !_hideOnAwake;
-			_base.gameObject.SetActive(!_hideOnAwake);
-		}
 
 		protected virtual void Update()
 		{
@@ -110,6 +97,12 @@ namespace SBaier.UI
 			};
 		}
 
+		public override void HideImmediatly()
+		{
+			_canvasGroup.alpha = 0;
+			_canvasGroup.interactable = false;
+			finishHide();
+		}
 
 		private enum State
 		{

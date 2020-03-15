@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 namespace SBaier.UI
 {
@@ -7,8 +8,17 @@ namespace SBaier.UI
 	{
 		[SerializeField]
 		private ViewAnimator _animator = null;
+		[SerializeField]
+		protected bool _hideOnAwake = true;
 
 		public event Action OnHidden;
+
+		[Inject]
+		private void Construct()
+		{
+			if (_hideOnAwake)
+				_animator.HideImmediatly();
+		}
 
 		public void Display()
 		{

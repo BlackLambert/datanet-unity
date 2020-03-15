@@ -419,7 +419,8 @@ GameObject:
   - component: {fileID: 3193522769735717423}
   - component: {fileID: 3193522769735717416}
   - component: {fileID: 3669344420683150278}
-  - component: {fileID: 2446726067267150342}
+  - component: {fileID: 3319647779297855412}
+  - component: {fileID: 7551332246823341381}
   m_Layer: 5
   m_Name: NetDashboard
   m_TagString: Untagged
@@ -519,8 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ecd620edc90cd46af2e099e42ad31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 2446726067267150342}
---- !u!114 &2446726067267150342
+  _animator: {fileID: 3319647779297855412}
+--- !u!114 &3319647779297855412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,11 +530,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3193522769735717417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08c9db2e76a1404eb13a049c7160d57, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e4b44724e4730d4a969e8783afe97aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _hideOnAwake: 1
-  _base: {fileID: 3193522769735717417}
+  _canvasGroup: {fileID: 7551332246823341381}
+  _base: {fileID: 3193522769735717421}
+  _fadeInDuration: 0.33
+  _fadeOutDuration: 0.25
+--- !u!225 &7551332246823341381
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193522769735717417}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3558350470749666391
 GameObject:
   m_ObjectHideFlags: 0

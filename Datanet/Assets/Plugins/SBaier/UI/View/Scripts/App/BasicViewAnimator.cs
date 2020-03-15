@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 namespace SBaier.UI
 {
@@ -7,6 +8,7 @@ namespace SBaier.UI
 	{
 		[SerializeField]
 		private GameObject _base = null;
+		public GameObject Base { get { return _base; } }
 
 		public override event Action OnHidden;
 
@@ -19,6 +21,11 @@ namespace SBaier.UI
 		{
 			_base.SetActive(false);
 			OnHidden?.Invoke();
+		}
+
+		public override void HideImmediatly()
+		{
+			Hide();
 		}
 	}
 }
