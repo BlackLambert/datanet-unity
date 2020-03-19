@@ -1,18 +1,22 @@
 ﻿
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
 namespace SBaier.Datanet.Core
 {
+	[JsonObject(MemberSerialization.OptIn)]
 	public class DataNet
 	{
+		[JsonProperty]
 		public Guid ID
 		{
 			get;
 			private set;
 		}
 
+		[JsonProperty]
 		private string _name = "";
 		public string Name
 		{

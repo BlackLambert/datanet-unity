@@ -1,17 +1,12 @@
-﻿
-
-using SBaier.Storage;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using SBaier.Storage;
 
 namespace SBaier.Datanet.Core
 {
-	public class DataNetsRepositoryDummy : DictionaryRepositoryDummy<Guid, DataNet>, DataNetsRepository
+	public class DataNetsRepositoryDummy : RepositoryDummy<DataNets>, DataNetsRepository
 	{
-		public void Add(DataNet net)
+		public DataNetsRepositoryDummy()
 		{
-			Add(net.ID, net);
+			Store(new DataNets());
 		}
 	}
 }

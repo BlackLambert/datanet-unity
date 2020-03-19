@@ -1,8 +1,6 @@
 using Zenject;
 using System.Collections;
 using UnityEngine.TestTools;
-using SBaier.Testing;
-using TMPro;
 using NUnit.Framework;
 using SBaier.Datanet.Core;
 using SBaier.Testing.UI;
@@ -23,8 +21,8 @@ namespace SBaier.Datanet.Tests
 			//Bindings
 			Container.Bind<SelectedDataNet>().AsSingle();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
-			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryImpl>().AsSingle();
-			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
+			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryDummy>().AsSingle();
+			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorDummy>().AsSingle();
 			DataNet dataNet = Container.Resolve<DataNetFactory>().Create(new DataNetFactory.Parameter(_netName));
 			Container.Bind<DataNet>().FromInstance(dataNet).AsSingle();
 			Container.Bind(typeof(NetNameDisplay)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_NetNameDisplay).AsSingle().NonLazy();

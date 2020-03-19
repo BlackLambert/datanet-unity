@@ -24,7 +24,7 @@ namespace SBaier.Datanet
 
 		public void LoadEditorFor(Guid nodeID)
 		{
-			Node node = _nodesRepository.Get(nodeID);
+			Node node = _nodesRepository.Get().Get(nodeID);
 			PrefabFactory.Parameter[] parameters = new PrefabFactory.Parameter[]
 			{
 				new PrefabFactory.Parameter(node)

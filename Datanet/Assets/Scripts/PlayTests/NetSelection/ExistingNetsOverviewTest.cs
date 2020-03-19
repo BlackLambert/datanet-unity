@@ -27,16 +27,17 @@ namespace SBaier.Datanet.Tests
 			Container.Bind(typeof(ExistingNetOverviewInstaller), typeof(NetSelectionElementsCreator)).FromComponentInNewPrefabResource(ResourcePaths.ExistingNetsOverview).AsSingle().NonLazy();
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
 			Container.Bind<SelectedDataNet>().AsSingle();
-			Container.Bind(typeof(DataNetsRepository), typeof(ICollectionRepository<KeyValuePair<Guid, DataNet>>)).To<DataNetsRepositoryImpl>().AsSingle();
+			Container.Bind(typeof(DataNetsRepository), typeof(Repository<DataNets>)).To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<PrefabFactory>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
 
 			PostInstall();
 
 			//Init Objects
+			_repository.Store(new DataNets());
 			_overviewInstaller.transform.SetParent(_canvas.Hook, false);
-			_container.Add(_netFactory.Create(new DataNetFactory.Parameter(_firstNetName)));
-			_container.Add(_netFactory.Create(new DataNetFactory.Parameter(_secondNetName)));
+			_repository.Get().Add(_netFactory.Create(new DataNetFactory.Parameter(_firstNetName)));
+			_repository.Get().Add(_netFactory.Create(new DataNetFactory.Parameter(_secondNetName)));
 			_additionalNet = _netFactory.Create(new DataNetFactory.Parameter(_additionalNetName));
 		}
 
@@ -49,7 +50,7 @@ namespace SBaier.Datanet.Tests
 		[Inject]
 		private DataNetFactory _netFactory = null;
 		[Inject]
-		private DataNetsRepository _container = null;
+		private DataNetsRepository _repository = null;
 		private DataNet _additionalNet = null;
 
 		[UnityTest]
@@ -71,7 +72,7 @@ namespace SBaier.Datanet.Tests
 
 			Assert.AreEqual(2, _elementsCreator.ElementsCopy.Count);
 			Assert.AreEqual(2, _elementsCreator.Hook.GetComponentsInChildren<NetSelectionElementInstaller>().Length);
-			foreach(DataNet net in _container.Copy().Values)
+			foreach(DataNet net in _repository.Get().CopyDictionary().Values)
 				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(new KeyValuePair<Guid, DataNet>(net.ID, net)));
 			yield return 0;
 		}
@@ -82,10 +83,10 @@ namespace SBaier.Datanet.Tests
 			Install();
 			yield return 0;
 
-			_container.Add(_additionalNet);
+			_repository.Get().Add(_additionalNet);
 			yield return 0;
 			Assert.AreEqual(3, _elementsCreator.Hook.GetComponentsInChildren<NetSelectionElementInstaller>().Length);
-			foreach (DataNet net in _container.Copy().Values)
+			foreach (DataNet net in _repository.Get().CopyDictionary().Values)
 				Assert.IsNotNull(_elementsCreator.ElementsCopy.ContainsKey(new KeyValuePair<Guid, DataNet>(net.ID, net)));
 			yield return 0;
 		}

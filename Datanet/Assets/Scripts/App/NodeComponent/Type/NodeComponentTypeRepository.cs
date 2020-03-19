@@ -3,8 +3,7 @@ using System;
 
 namespace SBaier.Datanet.Core
 {
-	public interface NodeComponentTypeRepository : IDictionaryRepository<Guid, NodeComponentType>
+	public class NodeComponentTypeRepository : BasicRepository<NodeComponentTypes>
 	{
-		void Add(NodeComponentType type);
 	}
 }

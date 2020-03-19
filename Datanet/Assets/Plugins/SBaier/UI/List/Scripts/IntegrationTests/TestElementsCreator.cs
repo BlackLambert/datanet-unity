@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SBaier.UI.List.Tests
 {
-	public class TestElementsCreator : ListElementsCreator<TestData, TestElement>
+	public class TestElementsCreator : ListElementsCreator<TestDatas, TestData, TestElement>
 	{
 		protected override PrefabFactory.Parameter[] getPrefabFactoryParameters(TestData data)
 		{

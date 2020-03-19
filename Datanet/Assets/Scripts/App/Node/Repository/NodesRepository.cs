@@ -1,11 +1,8 @@
 ﻿using SBaier.Storage;
-using System;
-using SBaier.Datanet.Core;
 
 namespace SBaier.Datanet.Core
 {
-	public interface NodesRepository : IDictionaryRepository<Guid, Node>
+	public class NodesRepository : BasicRepository<Nodes>
 	{
-		void Add(Node node);
 	}
 }

@@ -19,7 +19,7 @@ namespace SBaier.Datanet.Core
 
 		public override DataNet Create(Parameter parameter)
 		{
-			_nameValidator.Validate(parameter.NetName, _dataNetsRepository.Copy().Values);
+			_nameValidator.Validate(parameter.NetName, _dataNetsRepository.Get().CopyDictionary().Values);
 			return new DataNet(parameter.ID, parameter.NetName);
 		}
 	}

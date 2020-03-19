@@ -5,7 +5,7 @@ using System;
 
 namespace SBaier.Datanet
 {
-	public class NodeTemplateSelectionElementCreator : ListElementsCreator<KeyValuePair<Guid,NodeTemplate>, SelectNodeTemplateElementInstaller>
+	public class NodeTemplateSelectionElementCreator : ListElementsCreator<NodeTemplates, KeyValuePair<Guid,NodeTemplate>, SelectNodeTemplateElementInstaller>
 	{
 		protected override PrefabFactory.Parameter[] getPrefabFactoryParameters(KeyValuePair<Guid, NodeTemplate> data)
 		{

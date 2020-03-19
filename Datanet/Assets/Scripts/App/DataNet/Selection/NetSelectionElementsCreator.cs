@@ -7,11 +7,15 @@ using SBaier.UI.List;
 
 namespace SBaier.Datanet
 {
-	public class NetSelectionElementsCreator: ListElementsCreator<KeyValuePair<Guid, DataNet>, NetSelectionElementInstaller>
+	public class NetSelectionElementsCreator: ListElementsCreator<DataNets, KeyValuePair<Guid, DataNet> , NetSelectionElementInstaller>
 	{
-		protected override PrefabFactory.Parameter[] getPrefabFactoryParameters(KeyValuePair<Guid, DataNet> pair)
+		public NetSelectionElementsCreator()
 		{
-			return new PrefabFactory.Parameter[] { new PrefabFactory.Parameter(pair.Value) };
+		}
+
+		protected override PrefabFactory.Parameter[] getPrefabFactoryParameters(KeyValuePair<Guid, DataNet> data)
+		{
+			return new PrefabFactory.Parameter[] { new PrefabFactory.Parameter(data.Value) };
 		}
 	}
 }

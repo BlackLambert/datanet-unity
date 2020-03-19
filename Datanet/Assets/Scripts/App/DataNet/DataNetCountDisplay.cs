@@ -26,14 +26,14 @@ namespace SBaier.Datanet
 		protected virtual void Start()
 		{
 			updateText();
-			_netsReporitory.OnCollectionContentAdded += onNetContainerContentChange;
-			_netsReporitory.OnCollectionContentRemoved += onNetContainerContentChange;
+			_netsReporitory.Get().OnCollectionContentAdded += onNetContainerContentChange;
+			_netsReporitory.Get().OnCollectionContentRemoved += onNetContainerContentChange;
 		}
 
 		protected virtual void OnDestroy()
 		{
-			_netsReporitory.OnCollectionContentAdded -= onNetContainerContentChange;
-			_netsReporitory.OnCollectionContentRemoved -= onNetContainerContentChange;
+			_netsReporitory.Get().OnCollectionContentAdded -= onNetContainerContentChange;
+			_netsReporitory.Get().OnCollectionContentRemoved -= onNetContainerContentChange;
 		}
 
 		private void onNetContainerContentChange(KeyValuePair<Guid, DataNet> net)
@@ -43,7 +43,7 @@ namespace SBaier.Datanet
 
 		private void updateText()
 		{
-			_text.text = _netsReporitory.Count.ToString();
+			_text.text = _netsReporitory.Get().Count.ToString();
 		}
 	}
 }

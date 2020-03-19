@@ -2,13 +2,11 @@
 
 using NUnit.Framework;
 using SBaier.Datanet.Core;
-using SBaier.Testing;
 using SBaier.Testing.UI;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 using Zenject;
 
 namespace SBaier.Datanet.Tests
@@ -41,15 +39,16 @@ namespace SBaier.Datanet.Tests
 
 			//Init objects
 			_creationButton.transform.SetParent(_canvas.Hook, false);
+			_dataNetsRepository.Store(new DataNets());
 			DataNet net = _netFactory.Create(new DataNetFactory.Parameter(_existingNetName));
-			_dataNetContainer.Add(net);
+			_dataNetsRepository.Get().Add(net);
 		}
 
 
 		[Inject]
 		private DataNetCreationData _creationData = null;
 		[Inject]
-		private DataNetsRepository _dataNetContainer = null;
+		private DataNetsRepository _dataNetsRepository = null;
 		[Inject]
 		private DataNetCreationButton _creationButton = null;
 		[Inject]
@@ -93,8 +92,8 @@ namespace SBaier.Datanet.Tests
 			_creationData.Name = _netName;
 			_creationButton.Button.onClick.Invoke();
 			yield return null;
-			Assert.AreEqual(2, _dataNetContainer.Count);
-			Assert.IsNotNull(_dataNetContainer.Copy().Values.Where(n => n.Name.Equals(_netName)));
+			Assert.AreEqual(2, _dataNetsRepository.Get().Count);
+			Assert.IsNotNull(_dataNetsRepository.Get().CopyDictionary().Values.Where(n => n.Name.Equals(_netName)));
 			Assert.AreEqual(string.Empty, _creationData.Name);
 			Assert.AreEqual(string.Empty, _creationData.Error);
 			yield return null;

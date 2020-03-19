@@ -46,7 +46,7 @@ namespace SBaier.Datanet
 		private void createNode()
 		{
 			Node result = _nodeFactory.Create(new NodeFactory.Parameter());
-			_nodesRepository.Add(result);
+			_nodesRepository.Get().Add(result);
 			_dataNet.AddNode(result);
 			OnNodeCreated?.Invoke(result);
 		}

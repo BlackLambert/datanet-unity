@@ -24,6 +24,14 @@ namespace SBaier.UI
 			_animator.Display();
 		}
 
+		public void Display(bool display)
+		{
+			if (display)
+				Display();
+			else
+				Hide();
+		}
+
 		protected void OnDestroy()
 		{
 			_animator.OnHidden -= onHidden;

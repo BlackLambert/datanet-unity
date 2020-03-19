@@ -1,8 +1,6 @@
 using SBaier.Datanet.Core;
 using SBaier.UI.Popup;
 using SBaier.Storage;
-using System;
-using System.Collections.Generic;
 using Zenject;
 using SBaier.UI.Page;
 using UnityEngine;
@@ -21,7 +19,7 @@ namespace SBaier.Datanet
 			Container.Bind<PrefabFactory>().AsTransient();
 			Container.Bind<PopupResourcePaths>().To<DataNetPopupResourcePaths>().AsTransient();
 			Container.Bind<PopupViewDisplayer>().To<DataNetPopupViewDisplayer>().AsSingle();
-			Container.Bind(typeof(ICollectionRepository<KeyValuePair<Guid, NodeTemplate>>),
+			Container.Bind(typeof(Repository<NodeTemplates>),
 				typeof(NodeTemplatesRepository)).To<NodeTemplatesRepositoryImpl>().AsSingle();
 			Container.Bind(typeof(PageViewDisplayer)).To<WorkspacePageViewDisplayer>().AsSingle();
 			Container.Bind<OnStartPageLoader>().FromNewComponentOnNewGameObject().AsSingle().
@@ -29,6 +27,10 @@ namespace SBaier.Datanet
 			Page editorPage = Resources.Load<GameObject>(ResourcePaths.NodeEditorPage).GetComponentInChildren<Page>();
 			Container.Bind<NodeEditorLoader>().AsTransient().WithArguments(editorPage);
 			Container.Bind<NodeFactory>().To<NodeFactoryImpl>().AsTransient();
+
+			//TEMP
+			NodeTemplatesRepository nodeTemplatesRepository = Container.Resolve<NodeTemplatesRepository>();
+			nodeTemplatesRepository.Store(new NodeTemplates());
 		}
 	}
 }

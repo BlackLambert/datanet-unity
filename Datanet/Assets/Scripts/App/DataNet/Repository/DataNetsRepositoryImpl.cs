@@ -1,16 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SBaier.Storage;
+﻿using SBaier.Storage;
 using System;
+using System.Collections.Generic;
 
 namespace SBaier.Datanet.Core
 {
-	public class DataNetsRepositoryImpl : BasicDictionaryRepository<Guid, DataNet>, DataNetsRepository
+	public class DataNetsRepositoryImpl : BasicRepository<DataNets>, DataNetsRepository
 	{
-		public void Add(DataNet net)
-		{
-			Add(net.ID, net);
-		}
+
 	}
 }

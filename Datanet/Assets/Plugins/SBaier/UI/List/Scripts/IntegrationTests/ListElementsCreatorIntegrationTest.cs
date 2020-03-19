@@ -18,7 +18,7 @@ namespace SBaier.UI.List.Tests
 		{
 			PreInstall();
 			PrepareHightMatchingCanvasStage(Container);
-			Container.Bind(typeof(ICollectionRepository<TestData>), typeof(IListRepository<TestData>)).To<TestRepository>().AsSingle();
+			Container.Bind(typeof(Repository<TestDatas>)).To<TestRepository>().AsSingle();
 			Container.Bind<TestElementsCreator>().FromComponentInNewPrefabResource(_elementsCreatorPath).AsSingle();
 			Container.Bind<TestElement>().FromResource(_elementPath).AsSingle();
 			Container.Bind<TestData>().AsTransient();
@@ -26,7 +26,8 @@ namespace SBaier.UI.List.Tests
 			PostInstall();
 
 			_creator.transform.SetParent(_canvas.transform, false);
-			_repository.Add(_firstData);
+			_repository.Store(new TestDatas());
+			_repository.Get().Add(_firstData);
 		}
 
 		[Inject]
@@ -38,7 +39,7 @@ namespace SBaier.UI.List.Tests
 		[Inject]
 		private UITestCanvas _canvas = null;
 		[Inject]
-		private IListRepository<TestData> _repository = null;
+		private Repository<TestDatas> _repository = null;
 
 
 		[UnityTest]
@@ -47,7 +48,7 @@ namespace SBaier.UI.List.Tests
 			Install();
 			yield return 0;
 
-			Assert.AreEqual(1, _repository.Count);
+			Assert.AreEqual(1, _repository.Get().Count);
 			Assert.AreEqual(1, GameObject.FindObjectsOfType<TestElement>().Length);
 			Assert.AreSame(_firstData, GameObject.FindObjectOfType<TestElement>().TestData);
 			Assert.AreEqual(1, _creator.Hook.transform.childCount);
@@ -63,7 +64,7 @@ namespace SBaier.UI.List.Tests
 			yield return 0;
 
 			Assert.AreNotSame(_firstData, _secondData);
-			_repository.Add(_secondData);
+			_repository.Get().Add(_secondData);
 			yield return 0;
 			TestElement[] elements = GameObject.FindObjectsOfType<TestElement>();
 			Assert.AreEqual(2, elements.Length);

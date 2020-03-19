@@ -44,7 +44,7 @@ namespace SBaier.Datanet.Tests
 
 			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetWorkspaceScene).isLoaded);
 			DataNet firstNet = _netFactory.Create(new DataNetFactory.Parameter(_firstNetName));
-			_dataNetsRepository.Add(firstNet);
+			_dataNetsRepository.Get().Add(firstNet);
 			yield return 0;
 			NetSelectionElementsCreator _elementsCreator = GameObject.FindObjectOfType<NetSelectionElementsCreator>();
 			Assert.AreEqual(1, _elementsCreator.ElementsCopy.Count);
@@ -136,9 +136,9 @@ namespace SBaier.Datanet.Tests
 
 		private void checkNetElementsCreated(NetSelectionElementsCreator netSelectionElementsCreator)
 		{
-			foreach (DataNet net in _dataNetsRepository.Copy().Values)
+			foreach (DataNet net in _dataNetsRepository.Get().CopyDictionary().Values)
 				Assert.IsNotNull(netSelectionElementsCreator.ElementsCopy[new KeyValuePair<Guid, DataNet>(net.ID, net)]);
-			Assert.AreEqual(_dataNetsRepository.Count, netSelectionElementsCreator.ElementsCopy.Count);
+			Assert.AreEqual(_dataNetsRepository.Get().Count, netSelectionElementsCreator.ElementsCopy.Count);
 		}
 	}
 }

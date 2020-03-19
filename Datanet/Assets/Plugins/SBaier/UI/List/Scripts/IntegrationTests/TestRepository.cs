@@ -5,7 +5,7 @@ using SBaier.Storage;
 
 namespace SBaier.UI.List.Tests
 {
-	public class TestRepository : BasicListRepository<TestData>
+	public class TestRepository : BasicRepository<TestDatas>
 	{
 		
 
