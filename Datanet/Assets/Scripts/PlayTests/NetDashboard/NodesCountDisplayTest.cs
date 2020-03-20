@@ -4,6 +4,7 @@ using UnityEngine.TestTools;
 using SBaier.Testing.UI;
 using NUnit.Framework;
 using SBaier.Datanet.Core;
+using SBaier.Storage;
 
 namespace SBaier.Datanet.Tests
 {
@@ -22,14 +23,17 @@ namespace SBaier.Datanet.Tests
 			Container.Bind<DataNetFactory>().To<DataNetFactoryImpl>().AsSingle();
 			Container.Bind<DataNetsRepository>().To<DataNetsRepositoryImpl>().AsSingle();
 			Container.Bind<DataNetNameValidator>().To<DataNetNameValidatorImpl>().AsSingle();
+			Container.Resolve<DataNetsRepository>().Store(new DataNets());
 			DataNet data = Container.Resolve<DataNetFactory>().Create(new DataNetFactory.Parameter(_netName));
 			Container.Bind<DataNet>().FromInstance(data).AsSingle();
 			Container.Bind<NodeFactory>().To<NodeFactoryImpl>().AsSingle();
 			Container.Bind(typeof(NodeCountDisplay)).FromComponentInNewPrefabResource(ResourcePaths.NetDashboard_NodeCountDisplay).AsSingle().NonLazy();
 
 			PostInstall();
+			
 			_firstNode = _nodeFactory.Create(new NodeFactory.Parameter());
 			_secondNode = _nodeFactory.Create(new NodeFactory.Parameter());
+			
 		}
 
 		[Inject]

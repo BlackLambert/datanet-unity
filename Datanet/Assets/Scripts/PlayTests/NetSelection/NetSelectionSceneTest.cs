@@ -21,7 +21,7 @@ namespace SBaier.Datanet.Tests
 		public IEnumerator Install()
 		{
 			//Setup scene
-			yield return LoadScenes(SceneNames.MainScene, SceneNames.NetSelection);
+			yield return LoadScenes(SceneNames.TestMainScene, SceneNames.NetSelection);
 
 			//Init Objects
 		}
@@ -54,7 +54,7 @@ namespace SBaier.Datanet.Tests
 			button.onClick.Invoke();
 			yield return new WaitForSeconds(1);
 			Assert.AreEqual(firstNet, _selectedNet.Selected);
-			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.MainScene).isLoaded);
+			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.TestMainScene).isLoaded);
 			Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.NetWorkspaceScene).isLoaded);
 			Assert.IsFalse(SceneManager.GetSceneByName(SceneNames.NetSelection).isLoaded);
 		}
