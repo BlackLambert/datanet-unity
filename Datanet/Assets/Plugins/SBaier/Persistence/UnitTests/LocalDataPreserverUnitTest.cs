@@ -20,7 +20,7 @@ namespace SBaier.Persistence.Tests
 			Container.Bind(typeof(StringSerializer)).To<StringSerializerDummy>().AsSingle();
 			Container.Bind(typeof(DataPreserver<TestData>)).WithId("Correct").To<TestLocalDataPreserver>().AsTransient().WithArguments(DataPath);
 			Container.Bind(typeof(TestData)).To<TestData>().AsTransient();
-			Container.Bind(typeof(LocalDataAccesser)).To<LocalDataAccesser>().AsTransient();
+			Container.Bind(typeof(LocalDataAccesser)).To<DefaultDataAccesser>().AsTransient();
 			Container.Inject(this);
 		}
 
@@ -52,14 +52,14 @@ namespace SBaier.Persistence.Tests
 		[Test]
 		public void Preserve_FailsOnNullArgument()
 		{
-			Assert.Throws<ArgumentNullException>(() => Task.Run(() => preserveData()).GetAwaiter().GetResult());
+			Assert.Throws<ArgumentNullException>(() => Task.Run(() => preservEmpty()).GetAwaiter().GetResult());
 		}
 
 		[Test]
 		public void Preserve_SavesExpected()
 		{
 			string expectedString = _data.ToString();
-			Assert.Throws<ArgumentNullException>(() => Task.Run(() => preserveData()).GetAwaiter().GetResult());
+			Task.Run(() => preserveData()).GetAwaiter().GetResult();
 			string savedData = Task.Run(() => loadSavedData()).GetAwaiter().GetResult();
 			Assert.IsTrue(savedData.Contains(expectedString));
 		}
@@ -72,6 +72,11 @@ namespace SBaier.Persistence.Tests
 		private async Task preserveData()
 		{
 			await _preserver.Preserve(_data);
+		}
+
+		private async Task preservEmpty()
+		{
+			await _preserver.Preserve(null);
 		}
 	}
 }

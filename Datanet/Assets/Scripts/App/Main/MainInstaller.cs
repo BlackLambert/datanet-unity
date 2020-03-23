@@ -1,9 +1,6 @@
 using SBaier.Datanet.Core;
-using UnityEngine;
 using Zenject;
 using SBaier.Storage;
-using System;
-using System.Collections.Generic;
 using SBaier.Persistence;
 
 namespace SBaier.Datanet
@@ -16,6 +13,16 @@ namespace SBaier.Datanet
 			Container.Bind(typeof(NodesRepository), typeof(Repository<Nodes>)).
 				To<NodesRepository>().AsSingle();
 			Container.Bind<SelectedDataNet>().To<SelectedDataNet>().AsSingle();
+			bindLocalDataAccesser();
+		}
+
+		private void bindLocalDataAccesser()
+		{
+#if UNITY_ANDROID
+			Container.Bind(typeof(AndroidDataAccesser)).To<LocalDataAccesser>().AsTransient();
+#else
+			Container.Bind(typeof(DefaultDataAccesser)).To<LocalDataAccesser>().AsTransient();
+#endif
 		}
 	}
 }

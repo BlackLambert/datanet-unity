@@ -14,9 +14,14 @@ namespace SBaier.Persistence
 			_dataLoader = dataLoader;
 		}
 
-		void Start()
+		protected virtual void Start()
 		{
-			_dataLoader.Load();
+			load();
+		}
+
+		private async void load()
+		{
+			await _dataLoader.Load();
 		}
 	}
 }

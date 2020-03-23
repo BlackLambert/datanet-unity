@@ -19,7 +19,7 @@ namespace SBaier.Tests
 		[SetUp]
 		public void Install()
 		{
-			Container.Bind(typeof(LocalDataAccesser)).To<LocalDataAccesser>().AsTransient();
+			Container.Bind(typeof(LocalDataAccesser)).To<DefaultDataAccesser>().AsTransient();
 			Container.Inject(this);
 		}
 
@@ -36,7 +36,7 @@ namespace SBaier.Tests
 		private LocalDataAccesser _localDataAccesser = null;
 
 		[Test]
-		public void Preserve_CreatesPathDirectories()
+		public void Save_CreatesPathDirectories()
 		{
 			string directory = Path.GetDirectoryName(DataPath);
 			Assert.IsFalse(Directory.Exists(directory));
@@ -45,21 +45,40 @@ namespace SBaier.Tests
 		}
 
 		[Test]
-		public void Preserve_FailsOnDirectoryPath()
+		public void Save_FailsOnDirectoryPath()
 		{
 			Assert.Throws<ArgumentException>(() => Task.Run(() => saveData(DirDataPath, _data)).GetAwaiter().GetResult());
 		}
 
 		[Test]
-		public void Preserve_FailsOnEmptyPath()
+		public void Save_FailsOnEmptyPath()
 		{
 			Assert.Throws<ArgumentNullException>(() => Task.Run(() => saveData(string.Empty, _data)).GetAwaiter().GetResult());
 		}
 
 		[Test]
-		public void Preserve_FailsOnEmptyData()
+		public void Save_FailsOnEmptyData()
 		{
 			Assert.Throws<ArgumentNullException>(() => Task.Run(() => saveData(DataPath, string.Empty)).GetAwaiter().GetResult());
+		}
+
+		[Test]
+		public void Load_FailsOnDirectoryPath()
+		{
+			Assert.Throws<ArgumentException>(() => Task.Run(() => loadSavedData(DirDataPath)).GetAwaiter().GetResult());
+		}
+
+		[Test]
+		public void Load_FailsOnEmptyPath()
+		{
+			Assert.Throws<ArgumentNullException>(() => Task.Run(() => loadSavedData(string.Empty)).GetAwaiter().GetResult());
+		}
+
+		[Test]
+		public void Load_ReturnsEmptyStringOnNonExistentFile()
+		{
+			string result = Task.Run(() => loadSavedData(DataPath)).GetAwaiter().GetResult();
+			Assert.AreEqual(string.Empty, result);
 		}
 
 
