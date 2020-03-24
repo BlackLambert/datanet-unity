@@ -19,9 +19,9 @@ namespace SBaier.Datanet
 		private void bindLocalDataAccesser()
 		{
 #if UNITY_ANDROID
-			Container.Bind(typeof(AndroidDataAccesser)).To<LocalDataAccesser>().AsTransient();
+			Container.Bind(typeof(LocalDataAccesser)).To<AndroidDataAccesser>().AsTransient();
 #else
-			Container.Bind(typeof(DefaultDataAccesser)).To<LocalDataAccesser>().AsTransient();
+			Container.Bind(typeof(LocalDataAccesser)).To<DefaultDataAccesser>().AsTransient();
 #endif
 		}
 	}

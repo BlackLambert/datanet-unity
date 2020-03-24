@@ -8,6 +8,7 @@ namespace SBaier.Persistence
 	{
 		[SerializeField]
 		private Button _button = null;
+		public Button Button { get { return _button; } }
 
 		private DataSaver _dataSaver;
 
