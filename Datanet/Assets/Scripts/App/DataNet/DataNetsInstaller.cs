@@ -21,7 +21,6 @@ namespace SBaier.Datanet
 			Container.Bind(typeof(DataSaver<DataNets>)).To<DataNetsSaver>().AsTransient();
 			Container.Bind(typeof(DataLoader<DataNets>)).To<DataNetsLoader>().AsTransient();
 			Container.Bind(typeof(DataPreserver<DataNets>)).To<DataNetsPreserver>().AsTransient().WithArguments(PersistencePath);
-			Container.Bind(typeof(StringSerializer)).To<JsonDotNetSerializer>().AsTransient();
 		}
 	}
 }

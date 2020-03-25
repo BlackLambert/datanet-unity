@@ -1,5 +1,6 @@
 ﻿using SBaier.Storage;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace SBaier.Persistence
 {
@@ -21,6 +22,7 @@ namespace SBaier.Persistence
 			if (data == default)
 				data = createNew();
 			_repository.Store(data);
+			//Debug.Log($"Loaded {nameof(TData)} to Repository: {_repository.Get().ToString()}");
 		}
 
 		protected abstract TData createNew();

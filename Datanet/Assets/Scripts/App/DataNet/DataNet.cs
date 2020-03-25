@@ -29,6 +29,7 @@ namespace SBaier.Datanet.Core
 		}
 		public event Action OnNameChanged;
 
+		[JsonProperty]
 		private HashSet<Guid> _nodeIds;
 		public Action<Guid> OnNodeIDAdded;
 		public Action<Guid> OnNodeIDRemoved;

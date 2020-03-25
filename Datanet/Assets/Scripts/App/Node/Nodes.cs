@@ -8,5 +8,13 @@ namespace SBaier.Datanet.Core
 		{
 			Add(node.ID, node);
 		}
+
+		public override string ToString()
+		{
+			string result = "Nodes: (";
+			foreach (Node node in CopyDictionary().Values)
+				result += node.ToString();
+			return result + ")";
+		}
 	}
 }

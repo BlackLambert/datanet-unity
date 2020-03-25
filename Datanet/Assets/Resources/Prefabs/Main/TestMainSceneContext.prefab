@@ -72,5 +72,10 @@ PrefabInstance:
       propertyPath: _persistencePath
       value: Data/TestDataNets.json
       objectReference: {fileID: 0}
+    - target: {fileID: 3981561192341680925, guid: d39c459e3a585c6448db2659c2c95a5d,
+        type: 3}
+      propertyPath: _persistencePath
+      value: Data/TestDataNodes.json
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39c459e3a585c6448db2659c2c95a5d, type: 3}

@@ -1,7 +1,6 @@
-using SBaier.Datanet.Core;
 using Zenject;
-using SBaier.Storage;
 using SBaier.Persistence;
+using SBaier.Serialization.String;
 
 namespace SBaier.Datanet
 {
@@ -10,9 +9,8 @@ namespace SBaier.Datanet
 		public override void InstallBindings()
 		{
 			Container.Bind(typeof(DataSaver), typeof(CollectiveDataSaver)).To<CollectiveDataSaver>().AsSingle();
-			Container.Bind(typeof(NodesRepository), typeof(Repository<Nodes>)).
-				To<NodesRepository>().AsSingle();
 			Container.Bind<SelectedDataNet>().To<SelectedDataNet>().AsSingle();
+			Container.Bind(typeof(StringSerializer)).To<JsonDotNetSerializer>().AsTransient();
 			bindLocalDataAccesser();
 		}
 

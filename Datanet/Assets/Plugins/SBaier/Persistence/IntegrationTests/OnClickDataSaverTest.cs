@@ -20,9 +20,9 @@ namespace SBaier.Persistence.Tests
 		}
 
 		[Inject]
-		private OnClickDataSaver _onClickDataSaver;
+		private OnClickDataSaver _onClickDataSaver = null;
 		[Inject]
-		private TestDataSaver _testDataSaver;
+		private TestDataSaver _testDataSaver = null;
 
 		[UnityTest]
 		public IEnumerator SavesOnClick()

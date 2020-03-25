@@ -8,6 +8,7 @@ namespace SBaier.Persistence.Tests
 
 		public async Task Save()
 		{
+			await Task.Delay(1);
 			Saved = true;
 		}
 	}

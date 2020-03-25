@@ -22,7 +22,7 @@ namespace SBaier.Persistence.Tests
 		[Inject]
 		private TestDataSaver _testDataSaver = null;
 		[Inject]
-		private ToCollectiveDataSaverAdder<TestData> _adder;
+		private ToCollectiveDataSaverAdder<TestData> _adder = null;
 
 		[UnityTest]
 		public IEnumerator AddsSaverToCollectiveSaver()

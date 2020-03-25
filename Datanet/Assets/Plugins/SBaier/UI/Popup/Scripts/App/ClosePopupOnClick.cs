@@ -4,49 +4,19 @@ using Zenject;
 
 namespace SBaier.UI.Popup
 {
-	public class ClosePopupOnClick : MonoBehaviour
+	public class ClosePopupOnClick : CloseViewOnClick<Popup>
 	{
-		[SerializeField]
-		private Button _button = null;
-		public Button Button { get { return _button; } }
-
 		private PopupInstaller _popupInstaller;
-		private PopupViewDisplayer _popupDisplayer;
+
+		protected override Popup ViewToClose => _popupInstaller.Popup;
+
+		protected override Transform ViewToCloseBase => _popupInstaller.Base;
 
 		[Inject]
-		private void Construct(PopupInstaller popupInstaller,
-			PopupViewDisplayer popupDisplayer)
+		private void Construct(PopupInstaller popupInstaller)
 		{
 			_popupInstaller = popupInstaller;
-			_popupDisplayer = popupDisplayer;
 		}
 
-		protected virtual void Start()
-		{
-			Button.onClick.AddListener(onClick);
-		}
-
-		protected virtual void OnDestroy()
-		{
-			Button.onClick.RemoveListener(onClick);
-		}
-
-		private void onClick()
-		{
-			hidePopup();
-		}
-
-		private void hidePopup()
-		{
-
-			_popupInstaller.Popup.OnHidden += destroyPopup;
-			_popupDisplayer.Hide(_popupInstaller.Popup);
-		}
-
-		private void destroyPopup()
-		{
-			_popupInstaller.Popup.OnHidden -= destroyPopup;
-			Destroy(_popupInstaller.Base.gameObject);
-		}
 	}
 }

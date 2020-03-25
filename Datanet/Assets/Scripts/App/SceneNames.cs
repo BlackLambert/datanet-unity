@@ -9,5 +9,6 @@ namespace SBaier.Datanet
 		public const string NetSelectedMainScene = "NetSelectedMain";
 		public const string NetSelection = "NetSelection";
 		public const string NetWorkspaceScene = "NetWorkspace";
+		public const string TEstNetWorkspaceScene = "TestNetWorkspace";
 	}
 }

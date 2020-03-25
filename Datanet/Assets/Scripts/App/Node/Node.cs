@@ -33,5 +33,10 @@ namespace SBaier.Datanet.Core
 		{
 			return new HashSet<NodeComponent>(_components);
 		}
+
+		public override string ToString()
+		{
+			return $"Node(ID: {ID})";
+		}
 	}
 }

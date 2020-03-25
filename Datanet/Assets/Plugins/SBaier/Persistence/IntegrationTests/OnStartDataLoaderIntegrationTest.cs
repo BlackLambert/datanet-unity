@@ -12,14 +12,12 @@ namespace SBaier.Persistence.Tests
 		{
 			PreInstall();
 			Container.Bind(typeof(DataLoader<TestData>), typeof(TestDataLoader)).To<TestDataLoader>().AsSingle();
-			Container.Bind<TestOnStartDataLoader>().FromNewComponentOnNewGameObject().AsTransient();
+			Container.Bind<TestOnStartDataLoader>().FromNewComponentOnNewGameObject().AsTransient().NonLazy();
 			PostInstall();
 		}
 
 		[Inject]
-		private TestDataLoader _testDataLoader;
-		[Inject]
-		private TestOnStartDataLoader _testOnStartDataLoader;
+		private TestDataLoader _testDataLoader = null;
 
 		[UnityTest]
 		public IEnumerator LoadsDataOnStart()

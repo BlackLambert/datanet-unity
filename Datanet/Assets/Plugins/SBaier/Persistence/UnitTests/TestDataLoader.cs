@@ -8,6 +8,7 @@ namespace SBaier.Persistence.Tests
 
 		public async Task Load()
 		{
+			await Task.Delay(1);
 			Data = new TestData();
 		}
 	}
