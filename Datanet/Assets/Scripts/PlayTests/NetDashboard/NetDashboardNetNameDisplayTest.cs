@@ -2,7 +2,7 @@ using Zenject;
 using System.Collections;
 using UnityEngine.TestTools;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.Testing.UI;
 
 namespace SBaier.Datanet.Tests

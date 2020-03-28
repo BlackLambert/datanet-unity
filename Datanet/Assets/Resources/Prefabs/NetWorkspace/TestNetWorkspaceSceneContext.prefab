@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 509635575802512536, guid: 80e73c49626949348898488169a54fdf,
+        type: 3}
+      propertyPath: _persistencePath
+      value: Data/Nets/Test
+      objectReference: {fileID: 0}
     - target: {fileID: 1271664179074459665, guid: 80e73c49626949348898488169a54fdf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -77,7 +82,22 @@ PrefabInstance:
       propertyPath: _persistencePath
       value: Data/Nets/Test
       objectReference: {fileID: 0}
+    - target: {fileID: 5607320178193399835, guid: 80e73c49626949348898488169a54fdf,
+        type: 3}
+      propertyPath: _persistencePath
+      value: Data/Nets/Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240726945540328119, guid: 80e73c49626949348898488169a54fdf,
+        type: 3}
+      propertyPath: _persistencePath
+      value: Data/Nets/Test
+      objectReference: {fileID: 0}
     - target: {fileID: 6426580964400016039, guid: 80e73c49626949348898488169a54fdf,
+        type: 3}
+      propertyPath: _persistencePath
+      value: Data/Nets/Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507344354691002723, guid: 80e73c49626949348898488169a54fdf,
         type: 3}
       propertyPath: _persistencePath
       value: Data/Nets/Test

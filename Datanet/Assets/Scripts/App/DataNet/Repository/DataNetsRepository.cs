@@ -3,7 +3,7 @@
 
 using SBaier.Storage;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public interface DataNetsRepository : Repository<DataNets>
 	{

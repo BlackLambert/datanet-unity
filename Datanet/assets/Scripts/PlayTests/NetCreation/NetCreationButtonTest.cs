@@ -1,7 +1,7 @@
 ﻿
 
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.Testing.UI;
 using System.Collections;
 using System.Linq;

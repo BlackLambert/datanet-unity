@@ -1,6 +1,6 @@
 ﻿
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetFactoryDummy : DataNetFactory
 	{

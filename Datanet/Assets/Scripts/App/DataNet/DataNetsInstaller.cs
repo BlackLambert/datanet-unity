@@ -1,4 +1,4 @@
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.Persistence;
 using SBaier.Serialization.String;
 using SBaier.Storage;

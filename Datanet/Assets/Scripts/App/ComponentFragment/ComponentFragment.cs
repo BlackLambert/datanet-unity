@@ -1,18 +1,14 @@
 ﻿using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
-	public class ComponentFragment
+	public abstract class ComponentFragment
 	{
-		public Guid ID
-		{
-			get;
-			private set;
-		}
+		public abstract Guid ID { get; }
 
-		public ComponentFragment(Guid iD)
+		public ComponentFragment()
 		{
-			ID = iD;
+
 		}
 	}
 }

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public abstract class ComponentFragmentFactory 
 	{
-		public abstract ComponentFragment Create(ComponentFragmentTemplate template);
+		public abstract ComponentFragment CreateByTemplate(Guid templateID);
+		public abstract ComponentFragment CreateByData(Guid dataID);
 	}
 }

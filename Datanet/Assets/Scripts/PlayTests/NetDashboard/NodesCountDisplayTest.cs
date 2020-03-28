@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.TestTools;
 using SBaier.Testing.UI;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.Storage;
 
 namespace SBaier.Datanet.Tests
@@ -31,8 +31,8 @@ namespace SBaier.Datanet.Tests
 
 			PostInstall();
 			
-			_firstNode = _nodeFactory.Create(new NodeFactory.Parameter());
-			_secondNode = _nodeFactory.Create(new NodeFactory.Parameter());
+			//_firstNode = _nodeFactory.Create(new NodeFactory.Parameter());
+			//_secondNode = _nodeFactory.Create(new NodeFactory.Parameter());
 			
 		}
 

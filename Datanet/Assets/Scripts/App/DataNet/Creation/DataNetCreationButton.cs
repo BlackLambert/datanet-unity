@@ -1,6 +1,6 @@
 ﻿
 
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

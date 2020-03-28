@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using SBaier.Testing;
 using UnityEngine;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;

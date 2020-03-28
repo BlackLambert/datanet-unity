@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using System;
 using System.Collections.Generic;
 using System.Linq;

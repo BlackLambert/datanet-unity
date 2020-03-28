@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 1271664179074459665}
   - component: {fileID: 1271664179074459664}
   - component: {fileID: 1271664179074459671}
-  - component: {fileID: 6426580964400016039}
   - component: {fileID: 2654017618627009962}
-  - component: {fileID: 1856234756850217960}
+  - component: {fileID: 6426580964400016039}
+  - component: {fileID: 6240726945540328119}
+  - component: {fileID: 6507344354691002723}
+  - component: {fileID: 509635575802512536}
+  - component: {fileID: 5607320178193399835}
   m_Layer: 0
   m_Name: NetWorkspaceSceneContext
   m_TagString: Untagged
@@ -52,7 +55,10 @@ MonoBehaviour:
   - {fileID: 1271664179074459671}
   - {fileID: 2654017618627009962}
   - {fileID: 6426580964400016039}
-  - {fileID: 1856234756850217960}
+  - {fileID: 6240726945540328119}
+  - {fileID: 6507344354691002723}
+  - {fileID: 509635575802512536}
+  - {fileID: 5607320178193399835}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -84,20 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66a111ea8db34847ac2ed77fb46e9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6426580964400016039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271664179074459670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f44a51a3db52d439946bbe54bd29c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _persistencePath: Data/Nets
-  _fileName: NodeTemplates.json
 --- !u!114 &2654017618627009962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistencePath: Data/Nets
   _fileName: Nodes.json
---- !u!114 &1856234756850217960
+--- !u!114 &6426580964400016039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,8 +113,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 1271664179074459670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a54ad4005a63b13479ef790dc96f6a49, type: 3}
+  m_Script: {fileID: 11500000, guid: 37f44a51a3db52d439946bbe54bd29c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _persistencePath: Data/Nets
-  _fileName: NodeTypes.json
+  _fileName: NodeTemplates.json
+--- !u!114 &6240726945540328119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271664179074459670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc1b350251eab746b2a2f650a9b9241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistencePath: Data/Nets
+  _fileName: NodeComponentDatas.json
+--- !u!114 &6507344354691002723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271664179074459670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab538249bb18304cb5b786c0d366c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistencePath: Data/Nets
+  _fileName: NodeComponentTemplates.json
+--- !u!114 &509635575802512536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271664179074459670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6770a24c6ed91bd4a9256ffe891de252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistencePath: Data/Nets
+  _fileName: ComponentFragmentTemplates.json
+--- !u!114 &5607320178193399835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271664179074459670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bbd4bd834de4342a22b92b3ba44af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistencePath: Data/Nets
+  _fileName: ComponentFragmentDatas.json

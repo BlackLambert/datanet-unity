@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetsRepositoryImpl : BasicRepository<DataNets>, DataNetsRepository
 	{

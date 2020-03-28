@@ -3,7 +3,7 @@
 using System;
 using Zenject;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetFactoryImpl : DataNetFactory
 	{

@@ -1,34 +1,37 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
+	
 	public class TextFragment : ComponentFragment
 	{
-		public TextFragment(Guid iD, TextFragmentTemplate template): base(iD)
+		public TextFragment(TextFragmentData data, TextFragmentTemplate template): base()
 		{
-			_value = template.DefaultValue;
+			Data = data;
 			Template = template;
 		}
 
-		private string _value;
 		public string Value
 		{
 			get
 			{
 				if (Editable)
 					return Template.DefaultValue;
-				return _value;
+				return Data.Value;
 			}
 			set
 			{
 				if (!Editable)
-					throw new InvalidOperationException($"This {nameof(DateFragment)} is not editable. " +
+					throw new InvalidOperationException($"This {nameof(TextFragment)} is not editable. " +
 						$"Therefore setting the {nameof(Value)} is not allowed!");
-				_value = value;
+				Data.Value = value;
 			}
 		}
 
 		public bool Editable { get { return Template.Editable; } }
+		public override Guid ID { get { return Data.ID; } }
 		public TextFragmentTemplate Template { get; private set; }
+		public TextFragmentData Data { get; private set; }
 	}
 }

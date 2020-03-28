@@ -21,5 +21,7 @@ namespace SBaier.Datanet
 		public const string NodeTemplateSelectionElement = "Prefabs/NetWorkspace/NodeCreation/NodeTemplateSelectionElement";
 
 		public const string NodeEditorPage = "Prefabs/NetWorkspace/NodeEditor/NodeEditorPage";
+
+		public const string ComponentTemplateCreationPage = "Prefabs/ComponentTemplateCreation/ComponentTemplateCreationPage";
 	}
 }

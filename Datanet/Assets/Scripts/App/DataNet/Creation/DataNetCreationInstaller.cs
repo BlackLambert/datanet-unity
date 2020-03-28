@@ -1,6 +1,6 @@
 using UnityEngine;
 using Zenject;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 
 namespace SBaier.Datanet
 {

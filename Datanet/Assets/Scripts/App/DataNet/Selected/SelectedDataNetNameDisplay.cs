@@ -1,6 +1,6 @@
 ﻿
 
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using TMPro;
 using UnityEngine;
 using Zenject;

@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetNameValidatorDummy : DataNetNameValidator
 	{

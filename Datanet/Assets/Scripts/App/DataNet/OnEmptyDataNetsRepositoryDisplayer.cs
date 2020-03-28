@@ -1,5 +1,5 @@
 ﻿using SBaier.UI;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 
 namespace SBaier.Datanet
 {

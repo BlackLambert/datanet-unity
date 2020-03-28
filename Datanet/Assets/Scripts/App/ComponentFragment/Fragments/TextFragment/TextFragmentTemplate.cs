@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
-	[Serializable]
+	[JsonObject(MemberSerialization.OptIn)]
 	public class TextFragmentTemplate : ComponentFragmentTemplate
 	{
+		[JsonProperty]
 		public string DefaultValue { get; private set; }
+		[JsonProperty]
 		public bool Editable { get; private set; }
 
 		public TextFragmentTemplate(Guid iD, string defaultValue, bool editable) : base(iD)

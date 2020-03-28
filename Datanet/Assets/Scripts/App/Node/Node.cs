@@ -1,37 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class Node
 	{
-		public Guid ID
+		public Guid ID { get { return _data.ID; } }
+		public Guid TemplateID { get { return _data.TemplateID; } }
+		public string Name { get { return _template.Name; } }
+
+		private NodeData _data;
+		private NodeTemplate _template;
+
+		public OnCollectionChangedAction<Node, Guid> OnComponentIDAdded;
+		public OnCollectionChangedAction<Node, Guid> OnComponentIDRemoved;
+
+		public Node(NodeData data, NodeTemplate tempalte)
 		{
-			private set;
-			get;
+			_data = data;
+			_template = tempalte;
 		}
 
-		private HashSet<NodeComponent> _components;
-
-		public Node(Guid iD, Guid templateID)
+		public void AddComponentID(Guid value)
 		{
-			ID = iD;
-			_components = new HashSet<NodeComponent>();
+			if (value == default)
+				throw new ArgumentNullException($"The provided {nameof(Guid)} is empty. This is not allowed.");
+			if (_data.Components.Contains(value))
+				throw new ArgumentNullException($"The provided {nameof(Guid)} has already been added. Adding double is not allowed.");
+
+			_data.Components.Add(value);
+			OnComponentIDAdded?.Invoke(this, value);
 		}
 
-		public void AddComponent(NodeComponent value)
+		public void RemoveComponentID(Guid value)
 		{
-			_components.Add(value);
+			if (value == default)
+				throw new ArgumentNullException($"The provided {nameof(Guid)} is empty. This is not allowed.");
+			if (!_data.Components.Contains(value))
+				throw new ArgumentNullException($"The provided {nameof(Guid)} has not been added yet. Therefore removing it is not possible.");
+
+			_data.Components.Remove(value);
+			OnComponentIDRemoved?.Invoke(this, value);
 		}
 
-		public void RemoveComponent(NodeComponent value)
+		public HashSet<Guid> GetComponentsCopy()
 		{
-			_components.Remove(value);
-		}
-
-		public HashSet<NodeComponent> GetComponentsCopy()
-		{
-			return new HashSet<NodeComponent>(_components);
+			return new HashSet<Guid>(_data.Components);
 		}
 
 		public override string ToString()

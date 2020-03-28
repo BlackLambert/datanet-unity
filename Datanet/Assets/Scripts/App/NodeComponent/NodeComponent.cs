@@ -1,35 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
-	public abstract class NodeComponent
+	public class NodeComponent
 	{
-		public Guid ID
+		public NodeComponentTemplate Template { get; private set; }
+		public NodeComponentData Data { get; private set; }
+		public Guid ID { get { return Data.ID; } }
+		public string Name { get { return Template.Name; } }
+		public HashSet<Guid> FragmentsCopy { get { return new HashSet<Guid>(Data.Fragments); } }
+
+
+
+
+		public NodeComponent(NodeComponentTemplate template, NodeComponentData data)
 		{
-			get;
-			private set;
+			Data = data;
+			Template = template;
 		}
 
-		private HashSet<ComponentFragment> _fragments;
-		public HashSet<ComponentFragment> FragmentsCopy { get { return new HashSet<ComponentFragment>(_fragments); } }
 
-
-		public NodeComponent(Guid iD, HashSet<ComponentFragment> fragments)
+		public void AddFragment(Guid fragmentToAdd)
 		{
-			ID = iD;
-			_fragments = fragments;
+			if (fragmentToAdd == Guid.Empty)
+				throw new ArgumentNullException($"Failed to add fragment. The Guid is empty");
+			if (Data.Fragments.Contains(fragmentToAdd))
+				throw new ArgumentException($"Failed to add fragment. It has already been added before");
+
+			Data.Fragments.Add(fragmentToAdd);
 		}
 
-
-		public void AddFragment(ComponentFragment fragmentToAdd)
+		public void RemoveFragment(Guid fragmentToRemove)
 		{
-			_fragments.Add(fragmentToAdd);
-		}
+			if (fragmentToRemove == Guid.Empty)
+				throw new ArgumentNullException($"Failed to remove fragment. The Guid is empty");
+			if (!Data.Fragments.Contains(fragmentToRemove))
+				throw new ArgumentException($"Failed to remove fragment. It has not been added before.");
 
-		public void RemoveFragment(ComponentFragment fragmentToRemove)
-		{
-			_fragments.Remove(fragmentToRemove);
+			Data.Fragments.Remove(fragmentToRemove);
 		}
 	}
 }

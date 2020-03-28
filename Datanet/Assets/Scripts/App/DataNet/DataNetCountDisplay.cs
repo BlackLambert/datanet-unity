@@ -3,7 +3,7 @@
 using UnityEngine;
 using Zenject;
 using TMPro;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using System.Collections.Generic;
 using System;
 

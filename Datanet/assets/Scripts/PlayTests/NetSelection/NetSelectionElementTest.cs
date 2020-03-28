@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.SceneManagement;
 using SBaier.Testing;
 using SBaier.Testing.UI;

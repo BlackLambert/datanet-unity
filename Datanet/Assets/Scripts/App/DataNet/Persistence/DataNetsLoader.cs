@@ -1,6 +1,6 @@
 ﻿
 using SBaier.Persistence;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.Storage;
 
 namespace SBaier.Datanet

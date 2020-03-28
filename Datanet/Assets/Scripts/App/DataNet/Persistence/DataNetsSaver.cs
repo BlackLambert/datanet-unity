@@ -3,7 +3,7 @@ using SBaier.Storage;
 using System;
 using System.Collections.Generic;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetsSaver : RepositorySaver<DataNets>
 	{

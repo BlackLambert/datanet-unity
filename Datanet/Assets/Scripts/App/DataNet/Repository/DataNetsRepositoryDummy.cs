@@ -1,6 +1,6 @@
 ﻿using SBaier.Storage;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetsRepositoryDummy : RepositoryDummy<DataNets>, DataNetsRepository
 	{

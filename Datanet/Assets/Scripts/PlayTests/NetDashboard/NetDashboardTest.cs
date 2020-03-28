@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.TestTools;
 using UnityEngine;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using UnityEngine.UI;
 using SBaier.SceneManagement;
 using UnityEngine.SceneManagement;

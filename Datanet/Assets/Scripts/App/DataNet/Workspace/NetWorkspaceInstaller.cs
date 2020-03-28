@@ -1,4 +1,4 @@
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using SBaier.UI.Popup;
 using SBaier.Storage;
 using Zenject;
@@ -26,6 +26,7 @@ namespace SBaier.Datanet
 			Page editorPage = Resources.Load<GameObject>(ResourcePaths.NodeEditorPage).GetComponentInChildren<Page>();
 			Container.Bind<NodeEditorLoader>().AsTransient().WithArguments(editorPage);
 			Container.Bind<NodeFactory>().To<NodeFactoryImpl>().AsTransient();
+			Container.Bind(typeof(PageFromResourceLoader)).AsTransient();
 		}
 	}
 }

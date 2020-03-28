@@ -1,6 +1,6 @@
 using Zenject;
 using NUnit.Framework;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using System;
 
 namespace SBaier.Datanet.Tests

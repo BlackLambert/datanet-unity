@@ -1,6 +1,4 @@
-using SBaier.Datanet.Core;
 using SBaier.Persistence;
-using SBaier.Serialization.String;
 using SBaier.Storage;
 using System.IO;
 using UnityEngine;
@@ -13,7 +11,7 @@ namespace SBaier.Datanet
 		[SerializeField]
 		private string _persistencePath = "Data/Nets";
 		[SerializeField]
-		private string _fileName = "Nodes.json";
+		private string _fileName = "NodeDatas.json";
 
 		[Inject]
 		private DataNet _dataNet = null;
@@ -23,10 +21,14 @@ namespace SBaier.Datanet
 		public override void InstallBindings()
 		{
 			Container.Bind(typeof(NodesRepository), typeof(Repository<Nodes>)).
-				To<NodesRepository>().AsSingle();
-			Container.Bind(typeof(DataSaver<Nodes>)).To<NodesSaver>().AsTransient();
-			Container.Bind(typeof(DataLoader<Nodes>)).To<NodesLoader>().AsTransient();
-			Container.Bind(typeof(DataPreserver<Nodes>)).To<NodesPreserver>().AsTransient().WithArguments(PersistencePath);
+				To<NodesRepositoryImpl>().AsSingle();
+			Container.Bind(typeof(NodeProvider)).AsTransient();
+
+			Container.Bind(typeof(NodeDatasRepository), typeof(Repository<NodeDatas>)).
+				To<NodeDatasRepositoryImpl>().AsSingle();
+			Container.Bind(typeof(DataSaver<NodeDatas>)).To<NodeDatasSaver>().AsTransient();
+			Container.Bind(typeof(DataLoader<NodeDatas>)).To<NodeDatasLoader>().AsTransient();
+			Container.Bind(typeof(DataPreserver<NodeDatas>)).To<NodeDatasPreserver>().AsTransient().WithArguments(PersistencePath);
 		}
 	}
 }

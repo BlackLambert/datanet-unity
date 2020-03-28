@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
+	[JsonObject(MemberSerialization.OptIn)]
 	public class Nodes : BasicDictionaryData<Guid, Node>
 	{
 		public void Add(Node node)

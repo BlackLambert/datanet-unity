@@ -1,8 +1,8 @@
 ﻿using SBaier.Storage;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
-	public class NodesRepository : BasicRepository<Nodes>
+	public interface NodesRepository : Repository<Nodes>
 	{
 	}
 }

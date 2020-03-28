@@ -1,4 +1,4 @@
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using Zenject;
 
 namespace SBaier.Datanet

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-using SBaier.Datanet.Core;
+using SBaier.Datanet;
 using Zenject;
 
 namespace SBaier.Datanet

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	[JsonObject(MemberSerialization.OptIn)]
 	public class DataNet

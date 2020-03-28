@@ -2,7 +2,7 @@
 
 using System;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public abstract class DataNetFactory
 	{

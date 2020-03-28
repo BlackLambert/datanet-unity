@@ -1,7 +1,7 @@
 ﻿using SBaier.Persistence;
 using SBaier.Serialization.String;
 
-namespace SBaier.Datanet.Core
+namespace SBaier.Datanet
 {
 	public class DataNetsPreserver : LocalDataPreserver<DataNets>
 	{
