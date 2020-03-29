@@ -3,7 +3,7 @@ using Zenject;
 
 namespace SBaier.Datanet
 {
-	public class TextFragmentTemplateListElementInstaller : MonoInstaller
+	public class TextFragmentTemplateListElementContentInstaller : FragmentTemplateListElementContentInstaller
 	{
 		[Inject]
 		private TextFragmentTemplate _textFragmentTemplate = null;

@@ -35,7 +35,7 @@ namespace SBaier.Datanet
 		private List<Guid> _fragmentTemplateIDs;
 		public List<Guid> FragmentTemplateIDsCopy { get { return new List<Guid>( _fragmentTemplateIDs); } }
 
-		public OnCollectionChangedAction<NodeComponentTemplate, Guid> OnFragmentTempalteAdded;
+		public OnCollectionChangedAction<NodeComponentTemplate, Guid> OnFragmentTemplateAdded;
 		public OnCollectionChangedAction<NodeComponentTemplate, Guid> OnFragmentTempalteRemoved;
 
 		public NodeComponentTemplate(Guid id, string name, List<Guid> fragmentTemplateIds)
@@ -53,7 +53,7 @@ namespace SBaier.Datanet
 				throw new ArgumentException($"Failed to add fragment template. It has already been added before");
 
 			_fragmentTemplateIDs.Add(fragmentToAdd);
-			OnFragmentTempalteAdded?.Invoke(this, fragmentToAdd);
+			OnFragmentTemplateAdded?.Invoke(this, fragmentToAdd);
 		}
 
 		public void RemoveFragmentTemplate(Guid fragmentToRemove)

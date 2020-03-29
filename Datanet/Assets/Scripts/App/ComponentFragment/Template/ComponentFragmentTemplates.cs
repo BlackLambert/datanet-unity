@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace SBaier.Datanet
 {
 	public class ComponentFragmentTemplates : BasicDictionaryData<Guid, ComponentFragmentTemplate>
 	{
-		
+		public void Add(ComponentFragmentTemplate template)
+		{
+			Add(template.ID, template);
+		}
 	}
 }

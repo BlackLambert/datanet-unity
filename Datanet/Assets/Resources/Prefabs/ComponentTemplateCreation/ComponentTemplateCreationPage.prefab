@@ -530,7 +530,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4146507796039579390}
   m_HandleRect: {fileID: 6163781507756086171}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 4828205806558743763}
   - component: {fileID: 2859135911258990118}
   - component: {fileID: 5115882062871069762}
+  - component: {fileID: 6396235216424347989}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -896,7 +897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00018310547, y: 0}
+  m_AnchoredPosition: {x: 0.00018310547, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2859135911258990118
@@ -938,6 +939,19 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &6396235216424347989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547516110281589859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb12b2b2c80ae84792777a02391da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hook: {fileID: 4828205806558743763}
 --- !u!1 &2009943763702579047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3665310372134921922
@@ -1583,7 +1597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00018310547, y: 0}
+  m_AnchoredPosition: {x: 0.00018310547, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5028588273656562307
@@ -1759,7 +1773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5287291407656371476
@@ -1952,7 +1966,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7983503411954750212}
   m_HandleRect: {fileID: 3041375364679289688}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2068,10 +2082,10 @@ RectTransform:
   m_Father: {fileID: 5189450713166212812}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 408.4, y: -20.2}
-  m_SizeDelta: {x: 786.3, y: 784.8}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -3.682495, y: -20.200012}
+  m_SizeDelta: {x: -37.865, y: -295.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8673679016887937226
 CanvasRenderer:
@@ -2589,6 +2603,8 @@ GameObject:
   - component: {fileID: 4102753980321537024}
   - component: {fileID: 4430163774298344334}
   - component: {fileID: 5204767631161203470}
+  - component: {fileID: 7818321678109599044}
+  - component: {fileID: 8747716022557951184}
   m_Layer: 5
   m_Name: SelectedFragmentsList
   m_TagString: Untagged
@@ -2612,10 +2628,10 @@ RectTransform:
   m_Father: {fileID: 5189450713166212812}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -408, y: -20.2}
-  m_SizeDelta: {x: 783.6, y: 784.8}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 4.0802, y: -20.200012}
+  m_SizeDelta: {x: -40.56, y: -295.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4102753980321537024
 CanvasRenderer:
@@ -2683,6 +2699,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7818321678109599044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905902718050994854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 8747716022557951184}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &8747716022557951184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905902718050994854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b1832ea84bd714fae17960000df1c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listElementPrefabPath: Prefabs/ComponentTemplateCreation/FragmentTemplateListElement
 --- !u!1 &8932138827354501947
 GameObject:
   m_ObjectHideFlags: 0

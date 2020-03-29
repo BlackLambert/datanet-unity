@@ -23,5 +23,6 @@ namespace SBaier.Datanet
 		public const string NodeEditorPage = "Prefabs/NetWorkspace/NodeEditor/NodeEditorPage";
 
 		public const string ComponentTemplateCreationPage = "Prefabs/ComponentTemplateCreation/ComponentTemplateCreationPage";
+		public const string TextFragmentTemplateListElementContent = "Prefabs/ComponentTemplateCreation/TextFragmentTemplateListElementContent";
 	}
 }
