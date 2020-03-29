@@ -23,6 +23,7 @@ namespace SBaier.Datanet
 			Container.Bind(typeof(ComponentFragmentTemplatesRepository), typeof(Repository<ComponentFragmentTemplates>)).
 				To<ComponentFragmentTemplatesRepositoryImpl>().AsSingle();
 			Container.Bind(typeof(ComponentFragmentTemplateFactory)).To<ComponentFragmentTemplateFactoryImpl>().AsTransient();
+			Container.Bind(typeof(FragmentTemplateDestructor)).To<FragmentTemplateDestructorImpl>().AsTransient();
 			Container.Bind(typeof(DataSaver<ComponentFragmentTemplates>)).To<ComponentFragmentTemplatesSaver>().AsTransient();
 			Container.Bind(typeof(DataLoader<ComponentFragmentTemplates>)).To<ComponentFragmentTemplatesLoader>().AsTransient();
 			Container.Bind(typeof(DataPreserver<ComponentFragmentTemplates>)).To<ComponentFragmentTemplatesPreserver>().AsTransient().WithArguments(PersistencePath);

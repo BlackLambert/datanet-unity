@@ -13,9 +13,18 @@ namespace SBaier.Datanet
 			private set;
 		}
 
-		public ComponentFragmentTemplate(Guid iD)
+		[JsonProperty]
+		public ComponentFragmentType Type
+		{
+			get;
+			private set;
+		}
+
+		public ComponentFragmentTemplate(Guid iD,
+			ComponentFragmentType type)
 		{
 			ID = iD;
+			Type = type;
 		}
 	}
 }

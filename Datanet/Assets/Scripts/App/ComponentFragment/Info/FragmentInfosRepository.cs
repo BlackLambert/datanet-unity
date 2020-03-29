@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SBaier.Datanet
 {
-	public interface FragmentInfoRepository : Repository<FragmentInfos>
+	public interface FragmentInfosRepository : Repository<FragmentInfos>
 	{
 		
 	}

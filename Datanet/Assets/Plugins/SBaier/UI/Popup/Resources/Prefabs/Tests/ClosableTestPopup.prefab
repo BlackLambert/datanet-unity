@@ -358,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5583024458372861912}
   _hideOnAwake: 0
+  _base: {fileID: 8963329518855359007}
 --- !u!114 &5583024458372861912
 MonoBehaviour:
   m_ObjectHideFlags: 0

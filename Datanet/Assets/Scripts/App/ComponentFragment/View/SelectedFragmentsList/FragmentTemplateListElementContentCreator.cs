@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace SBaier.Datanet
 {
-	public class TragmentTemplateListElementContentCreator : MonoBehaviour
+	public class FragmentTemplateListElementContentCreator : MonoBehaviour
 	{
 		private ComponentFragmentTemplate _template;
 		private PrefabFactory _prefabFactory;

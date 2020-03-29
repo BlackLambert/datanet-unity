@@ -12,13 +12,13 @@ namespace SBaier.Datanet
 
 		public override void InstallBindings()
 		{
-			Container.Bind(typeof(Repository<FragmentInfos>), typeof(FragmentInfoRepository)).
-				To<FragmentInfoRepositoryImpl>().FromInstance(createFragmentInfosRepository()).AsSingle();
+			Container.Bind(typeof(Repository<FragmentInfos>), typeof(FragmentInfosRepository)).
+				To<FragmentInfosRepositoryImpl>().FromInstance(createFragmentInfosRepository()).AsSingle();
 		}
 
-		private FragmentInfoRepositoryImpl createFragmentInfosRepository()
+		private FragmentInfosRepositoryImpl createFragmentInfosRepository()
 		{
-			FragmentInfoRepositoryImpl repository = new FragmentInfoRepositoryImpl();
+			FragmentInfosRepositoryImpl repository = new FragmentInfosRepositoryImpl();
 			FragmentInfos infos = new FragmentInfos();
 			foreach (FragmentInfo info in _infos)
 				infos.Add(info);

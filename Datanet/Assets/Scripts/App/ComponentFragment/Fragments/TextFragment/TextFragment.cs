@@ -6,10 +6,16 @@ namespace SBaier.Datanet
 	
 	public class TextFragment : ComponentFragment
 	{
-		public TextFragment(TextFragmentData data, TextFragmentTemplate template): base()
+		private TextFragmentTemplate _template;
+		private TextFragmentData _data;
+		private FragmentInfo _info;
+
+		public TextFragment(TextFragmentData data, TextFragmentTemplate template,
+			FragmentInfo info) : base()
 		{
-			Data = data;
-			Template = template;
+			_data = data;
+			_template = template;
+			_info = info;
 		}
 
 		public string Value
@@ -17,21 +23,20 @@ namespace SBaier.Datanet
 			get
 			{
 				if (Editable)
-					return Template.DefaultValue;
-				return Data.Value;
+					return _template.DefaultValue;
+				return _data.Value;
 			}
 			set
 			{
 				if (!Editable)
 					throw new InvalidOperationException($"This {nameof(TextFragment)} is not editable. " +
 						$"Therefore setting the {nameof(Value)} is not allowed!");
-				Data.Value = value;
+				_data.Value = value;
 			}
 		}
 
-		public bool Editable { get { return Template.Editable; } }
-		public override Guid ID { get { return Data.ID; } }
-		public TextFragmentTemplate Template { get; private set; }
-		public TextFragmentData Data { get; private set; }
+		public bool Editable { get { return _template.Editable; } }
+		public override Guid ID { get { return _data.ID; } }
+		public override string Name => _info.Name;
 	}
 }

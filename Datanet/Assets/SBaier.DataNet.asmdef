@@ -2,16 +2,16 @@
     "name": "SBaier.DataNet",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:50d96200f22355f488ac01c1d4a94a22",
         "GUID:dcd9968f1ae78de4cbdea102cef972ad",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
         "GUID:421629ca60f4df34684232bf0d9a4ddb",
         "GUID:eca93f37a34654544bb49f84ed2e4678",
-        "GUID:7497bf0bdd512bb4280f18d69f270bfe",
-        "GUID:de191adfc55320e4c88890ecc68b326d",
-        "GUID:5105743e838a54e45b49f880b3186c8b",
         "GUID:90bb32fb4531c364a90373aeaa3f48f5",
-        "GUID:228c08f3bc234f449b3f53cea84cd4d5"
+        "GUID:228c08f3bc234f449b3f53cea84cd4d5",
+        "GUID:de191adfc55320e4c88890ecc68b326d",
+        "GUID:7497bf0bdd512bb4280f18d69f270bfe",
+        "GUID:50d96200f22355f488ac01c1d4a94a22",
+        "GUID:5105743e838a54e45b49f880b3186c8b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -15,14 +15,19 @@ namespace SBaier.Datanet
 		private Repository<ComponentFragments> _fragmentsRepository;
 		public ComponentFragments Fragments { get { return _fragmentsRepository.Get(); } }
 
+		private Repository<FragmentInfos> _fragmentInfosRepository;
+		public FragmentInfos Infos { get { return _fragmentInfosRepository.Get(); } }
+
 		[Inject]
 		private void Construct(Repository<ComponentFragmentTemplates> templatesRepository,
 			Repository<ComponentFragmentDatas> datasRepository,
-			Repository<ComponentFragments> fragmentsRepository)
+			Repository<ComponentFragments> fragmentsRepository,
+			Repository<FragmentInfos> fragmentInfosRepository)
 		{
 			_templatesRepository = templatesRepository;
 			_datasRepository = datasRepository;
 			_fragmentsRepository = fragmentsRepository;
+			_fragmentInfosRepository = fragmentInfosRepository;
 		}
 
 		public override ComponentFragment CreateByTemplate(Guid templateID)
@@ -62,6 +67,7 @@ namespace SBaier.Datanet
 
 		private ComponentFragment createFragment(ComponentFragmentTemplate template, ComponentFragmentData data = null)
 		{
+			checkFragmentInfosLoaded();
 			if (template is TextFragmentTemplate)
 				return createTextFragment((TextFragmentTemplate)template, (TextFragmentData)data);
 			throw new NotImplementedException($"The template of type {template.GetType()} is unknown to the {nameof(ComponentFragmentFactoryImpl)}.");
@@ -71,7 +77,7 @@ namespace SBaier.Datanet
 		{
 			if (data == null)
 				data = createTextDataFragmentData(template);
-			return new TextFragment(data, template);
+			return new TextFragment(data, template, Infos.Get(ComponentFragmentType.Text));
 		}
 
 		private TextFragmentData createTextDataFragmentData(TextFragmentTemplate template)
@@ -100,6 +106,12 @@ namespace SBaier.Datanet
 		{
 			if (Fragments == null)
 				throw new InvalidOperationException($"Failed to create {nameof(ComponentFragment)}. The {nameof(ComponentFragments)} have not been loaded yet.");
+		}
+
+		private void checkFragmentInfosLoaded()
+		{
+			if (Fragments == null)
+				throw new InvalidOperationException($"Failed to create {nameof(FragmentInfo)}. The {nameof(FragmentInfos)} have not been loaded yet.");
 		}
 	}
 }

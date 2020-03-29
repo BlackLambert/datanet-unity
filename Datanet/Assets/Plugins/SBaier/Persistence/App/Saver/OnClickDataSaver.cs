@@ -18,12 +18,12 @@ namespace SBaier.Persistence
 			_dataSaver = dataSaver;
 		}
 
-		protected virtual void Start()
+		protected virtual void OnEndable()
 		{
 			_button.onClick.AddListener(onClick);
 		}
 
-		protected virtual void OnDestroy()
+		protected virtual void OnDisable()
 		{
 			_button.onClick.RemoveListener(onClick);
 		}

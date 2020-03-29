@@ -10,43 +10,28 @@ namespace SBaier.UI
 		private Button _button = null;
 		public Button Button { get { return _button; } }
 
-		protected abstract TView ViewToClose { get; }
-		protected abstract Transform ViewToCloseBase { get; }
-
-		private ViewDisplayer<TView> _viewDisplayer;
+		private ViewDestructor<TView> _viewDestructor;
 
 		[Inject]
 		private void Construct(
-			ViewDisplayer<TView> viewDisplayer)
+			ViewDestructor<TView> viewDestructor)
 		{
-			_viewDisplayer = viewDisplayer;
+			_viewDestructor = viewDestructor;
 		}
 
-		protected virtual void Start()
+		protected virtual void OnEnable()
 		{
 			Button.onClick.AddListener(onClick);
 		}
 
-		protected virtual void OnDestroy()
+		protected virtual void OnDisable()
 		{
 			Button.onClick.RemoveListener(onClick);
 		}
 
 		private void onClick()
 		{
-			hidePage();
-		}
-
-		private void hidePage()
-		{
-			ViewToClose.OnHidden += destroyPage;
-			_viewDisplayer.Hide(ViewToClose);
-		}
-
-		private void destroyPage()
-		{
-			ViewToClose.OnHidden -= destroyPage;
-			Destroy(ViewToCloseBase.gameObject);
+			_viewDestructor.Destruct();
 		}
 	}
 }

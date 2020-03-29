@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Zenject;
 
 namespace SBaier.UI
 {
@@ -12,6 +11,7 @@ namespace SBaier.UI
 		protected bool _hideOnAwake = true;
 
 		public event Action OnHidden;
+		public abstract Transform Base { get; }
 
 		protected virtual void Awake()
 		{

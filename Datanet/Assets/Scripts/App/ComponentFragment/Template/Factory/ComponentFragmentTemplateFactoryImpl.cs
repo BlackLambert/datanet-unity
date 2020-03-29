@@ -29,7 +29,7 @@ namespace SBaier.Datanet
 			switch (type)
 			{
 				case ComponentFragmentType.Text:
-					return new TextFragmentTemplate(Guid.NewGuid(), _defaultText, false);
+					return new TextFragmentTemplate(Guid.NewGuid(), ComponentFragmentType.Text, _defaultText, false);
 				case ComponentFragmentType.None:
 					throw new ArgumentNullException($"The type {ComponentFragmentType.None} is not allowed.");
 				default:

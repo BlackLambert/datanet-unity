@@ -8,7 +8,7 @@ namespace SBaier.Datanet
 	public class NodeComponentFactoryImpl : NodeComponentFactory
 	{
 		private Repository<NodeComponentTemplates> _templatesRepository;
-		public NodeComponentTemplates Tempaltes { get { return _templatesRepository.Get(); } }
+		public NodeComponentTemplates Templates { get { return _templatesRepository.Get(); } }
 
 		private Repository<NodeComponentDatas> _datasRepository;
 		public NodeComponentDatas Datas { get { return _datasRepository.Get(); } }
@@ -59,7 +59,7 @@ namespace SBaier.Datanet
 		private NodeComponentTemplate getTemplate(Guid templateID)
 		{
 			checkTemplatesLoaded();
-			return Tempaltes.Get(templateID);
+			return Templates.Get(templateID);
 		}
 
 		private NodeComponentData getData(Guid dataID)
@@ -93,7 +93,7 @@ namespace SBaier.Datanet
 
 		private void checkTemplatesLoaded()
 		{
-			if (Tempaltes == null)
+			if (Templates == null)
 				throw new InvalidOperationException($"Failed to create {nameof(NodeComponent)}. The {nameof(NodeComponentTemplates)} have not been loaded yet.");
 		}
 
