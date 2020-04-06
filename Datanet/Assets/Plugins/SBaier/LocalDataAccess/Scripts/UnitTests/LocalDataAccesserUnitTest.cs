@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 
-namespace SBaier.Tests
+namespace SBaier.LocalDataAccess.Tests
 {
 	[TestFixture]
 	public class LocalDataAccesserUnitTest : ZenjectUnitTestFixture

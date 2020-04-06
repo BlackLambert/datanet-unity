@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace SBaier
+namespace SBaier.LocalDataAccess
 {
 	public abstract class LocalDataAccesser
 	{

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace SBaier
+namespace SBaier.LocalDataAccess
 {
 	public class DefaultDataAccesser : LocalDataAccesser
 	{

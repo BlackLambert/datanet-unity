@@ -7,7 +7,7 @@
         "Zenject-TestFramework",
         "SBaier.UI.Page",
         "SBaier.UI",
-        "SBaier"
+        "SBaier.Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

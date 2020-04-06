@@ -5,8 +5,8 @@
         "UnityEditor.TestRunner",
         "SBaier.UI",
         "Zenject",
-        "SBaier",
-        "Zenject-TestFramework"
+        "Zenject-TestFramework",
+        "SBaier.Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine.Networking;
 
-namespace SBaier
+namespace SBaier.LocalDataAccess
 {
 	public class AndroidDataAccesser : LocalDataAccesser
 	{

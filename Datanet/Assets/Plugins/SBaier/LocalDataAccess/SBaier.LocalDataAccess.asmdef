@@ -1,10 +1,7 @@
 {
-    "name": "SBaier.UI.List",
+    "name": "SBaier.LocalDataAccess",
     "references": [
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:eca93f37a34654544bb49f84ed2e4678",
-        "GUID:dcd9968f1ae78de4cbdea102cef972ad",
-        "GUID:5a80142534815cb4bb353dc9ec3905f6"
+        "GUID:b98c07f465ccb8f408cf510edbd827c2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
